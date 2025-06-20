@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+if [ -n "$VIMRUNTIME" ]; then
+  export FORCE_COLOR=0
+fi
+
+PASS=true
+
+echo "Running Biome linter and formatter ..."
+pnpm run check
+if [ $? -ne 0 ]; then
+  PASS=false
+fi
+
+if $PASS; then
+  echo "All checks passed!"
+  exit 0
+else
+  echo "Commit blocked: format or lint failed."
+  exit 1
+fi
+
