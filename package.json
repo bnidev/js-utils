@@ -12,9 +12,39 @@
     "check": "biome check .",
     "check:fix": "biome check --write ."
   },
-  "keywords": [],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "utility",
+    "utilities",
+    "helpers",
+    "functions",
+    "toolkit",
+    "utils",
+    "javascript",
+    "typescript",
+    "array",
+    "object",
+    "dom",
+    "timing",
+    "debounce",
+    "throttle",
+    "clone",
+    "flatten"
+  ],
   "author": "Benjamin Diener",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bnidev/js-utils.git"
+  },
+  "homepage": "https://bnidev.github.io/js-utils",
+  "bugs": {
+    "url": "https://github.com/bnidev/js-utils/issues"
+  },
   "packageManager": "pnpm@10.12.1",
   "devDependencies": {
     "@biomejs/biome": "2.0.0",
