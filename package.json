@@ -1,0 +1,26 @@
+{
+  "name": "@bnidev/js-utils",
+  "version": "0.0.1",
+  "description": "JavaScript utility functions for various tasks",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare:githook": "git config --local core.hooksPath .githooks || echo 'not in git'",
+    "build": "tsup src/index.ts --format cjs,esm --dts --out-dir dist",
+    "docs:build": "typedoc --out docs src/index.ts --plugin typedoc-github-theme --tsconfig tsconfig.json",
+    "check": "biome check .",
+    "check:fix": "biome check --write ."
+  },
+  "keywords": [],
+  "author": "Benjamin Diener",
+  "license": "MIT",
+  "packageManager": "pnpm@10.12.1",
+  "devDependencies": {
+    "@biomejs/biome": "2.0.0",
+    "tsup": "^8.5.0",
+    "typedoc": "^0.28.5",
+    "typedoc-github-theme": "^0.3.0",
+    "typescript": "^5.8.3"
+  }
+}
