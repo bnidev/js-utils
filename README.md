@@ -4,6 +4,7 @@ A collection of modern, typed JavaScript utility functions for working with arra
 
 [![npm version](https://img.shields.io/npm/v/@bnidev/js-utils.svg)](https://www.npmjs.com/package/@bnidev/js-utils)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/bnidev/js-utils/actions/workflows/build.yaml/badge.svg)](https://github.com/bnidev/js-utils/actions/workflows/build.yaml)
 
 ## ✨ Features
 
@@ -45,7 +46,7 @@ You can find the full documentation for all utility functions, including paramet
 
 Generated automatically using [TypeDoc](https://typedoc.org/).
 
-## Development & Testing
+## 🧪 Development & Testing
 
 To run lint and formatting checks:
 
