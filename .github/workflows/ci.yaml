@@ -1,4 +1,4 @@
-name: Verify Build and Lint
+name: CI
 
 on:
   push:
@@ -32,10 +32,39 @@ jobs:
       - name: Run Biome
         run: pnpm run check
 
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Tests
+        run: pnpm run test:coverage
+        env:
+          CI: true
+
   build:
     name: Build Package
     runs-on: ubuntu-latest
-    needs: lint
+    needs:
+      - lint
+      - test
 
     steps:
       - name: Checkout code
