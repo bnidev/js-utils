@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { toggleInertAround } from '../toggleInertAround'
 
 describe('toggleInertAround', () => {
@@ -27,9 +27,10 @@ describe('toggleInertAround', () => {
   })
 
   it('toggles inert attribute on siblings of the target and its ancestors', () => {
-    const sibling2a = document.getElementById('sibling2a')!
-    const level2b = document.getElementById('level2b')!
-    const level1b = document.getElementById('level1b')!
+    const sibling2a = document.getElementById('sibling2a')
+    const level2b = document.getElementById('level2b')
+    const level1b = document.getElementById('level1b')
+    if (!sibling2a || !level2b || !level1b) throw new Error('Test setup failed')
 
     // Initial: no inert attributes
     expect(sibling2a.hasAttribute('inert')).toBe(false)

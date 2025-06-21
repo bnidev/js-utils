@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { waitForVisibleElement } from '../waitForVisibleElement'
 
 describe('waitForVisibleElement', () => {
@@ -8,14 +8,17 @@ describe('waitForVisibleElement', () => {
     // Stub performance.now() to simulate time progression
     let now = 0
     vi.stubGlobal('performance', {
-      now: () => now,
+      now: () => now
     })
     // Mock setTimeout to increment our fake clock
     const realSetTimeout = setTimeout
-    vi.stubGlobal('setTimeout', (fn: any, delay: number) => {
-      now += delay
-      return realSetTimeout(fn, 0)
-    })
+    vi.stubGlobal(
+      'setTimeout',
+      (fn: (...args: unknown[]) => void, delay: number, ...args: unknown[]) => {
+        now += delay
+        return realSetTimeout(fn, 0, ...args)
+      }
+    )
   })
 
   afterEach(() => {
@@ -54,12 +57,13 @@ describe('waitForVisibleElement', () => {
       el.style.display = 'block'
     }, 50)
 
-    const customCheck = (style: CSSStyleDeclaration) => style.display === 'block'
+    const customCheck = (style: CSSStyleDeclaration) =>
+      style.display === 'block'
 
     const promise = waitForVisibleElement('custom-display-check', {
       timeout: 200,
       interval: 10,
-      displayCheck: customCheck,
+      displayCheck: customCheck
     })
 
     vi.runAllTimers()
@@ -72,12 +76,15 @@ describe('waitForVisibleElement', () => {
     const timeout = 100
     const interval = 10
 
-    const promise = waitForVisibleElement('missing-element', { timeout, interval })
+    const promise = waitForVisibleElement('missing-element', {
+      timeout,
+      interval
+    })
 
     // Advance timers step-by-step to trigger polling and eventually timeout
-    let rejected = false
+    let _rejected = false
     promise.catch(() => {
-      rejected = true
+      _rejected = true
     })
 
     for (let elapsed = 0; elapsed <= timeout + interval; elapsed += interval) {
@@ -87,7 +94,8 @@ describe('waitForVisibleElement', () => {
     }
 
     // Now the promise should be rejected
-    await expect(promise).rejects.toThrow(`Element #missing-element not visible within ${timeout}ms`)
+    await expect(promise).rejects.toThrow(
+      `Element #missing-element not visible within ${timeout}ms`
+    )
   })
-
 })

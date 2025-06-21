@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { scrollToElementAfterRender } from '../scrollToElementAfterRender'
 
 describe('scrollToElementAfterRender', () => {
@@ -28,7 +28,7 @@ describe('scrollToElementAfterRender', () => {
     scrollToElementAfterRender('test-element')
 
     expect(element.scrollIntoView).toHaveBeenCalledWith({
-      behavior: 'smooth',
+      behavior: 'smooth'
     })
   })
 
@@ -36,7 +36,7 @@ describe('scrollToElementAfterRender', () => {
     scrollToElementAfterRender('test-element', false)
 
     expect(element.scrollIntoView).toHaveBeenCalledWith({
-      behavior: 'auto',
+      behavior: 'auto'
     })
   })
 
