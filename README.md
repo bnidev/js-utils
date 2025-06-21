@@ -4,7 +4,7 @@ A collection of modern, typed JavaScript utility functions for working with arra
 
 [![npm version](https://img.shields.io/npm/v/@bnidev/js-utils.svg)](https://www.npmjs.com/package/@bnidev/js-utils)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![CI](https://github.com/bnidev/js-utils/actions/workflows/build.yaml/badge.svg)](https://github.com/bnidev/js-utils/actions/workflows/build.yaml)
+[![CI](https://github.com/bnidev/js-utils/actions/workflows/ci.yaml/badge.svg)](https://github.com/bnidev/js-utils/actions/workflows/ci.yaml)
 
 ## ✨ Features
 
