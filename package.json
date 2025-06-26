@@ -6,7 +6,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepare:githook": "git config --local core.hooksPath .githooks || echo 'not in git'",
+    "prepare": "git config --local core.hooksPath .githooks || echo 'not in git'",
     "build": "tsup src/index.ts --format cjs,esm --dts --out-dir dist",
     "docs:build": "typedoc --plugin typedoc-github-theme",
     "check": "biome check .",
