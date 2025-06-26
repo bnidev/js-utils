@@ -8,7 +8,7 @@
   "scripts": {
     "prepare:githook": "git config --local core.hooksPath .githooks || echo 'not in git'",
     "build": "tsup src/index.ts --format cjs,esm --dts --out-dir dist",
-    "docs:build": "typedoc --out docs src/index.ts --plugin typedoc-github-theme --tsconfig tsconfig.json",
+    "docs:build": "typedoc --plugin typedoc-github-theme",
     "check": "biome check .",
     "check:fix": "biome check --write .",
     "test": "vitest",

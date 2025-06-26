@@ -1,4 +1,9 @@
 {
+  "$schema": "https://typedoc.org/schema.json",
+  "exclude": ["**/node_modules/**", "**/__tests/**"],
+  "entryPoints": ["./src/index.ts"],
+  "tsconfig": "./tsconfig.json",
+  "out": "./docs",
   "headings": {
     "readme": false,
     "document": false
