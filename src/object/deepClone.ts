@@ -28,7 +28,7 @@
  *
  * // Modifying the clone does not affect the original
  * cloned.b.c = 3
- * console.log(original.b.c); // Output: 2
+ * console.log(original.b.c) // Output: 2
  * ```
  */
 

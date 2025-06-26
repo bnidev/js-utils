@@ -19,7 +19,7 @@
  *
  * @example Usage
  * ```ts
- * toggleInertAround('myElementId');
+ * toggleInertAround('myElementId')
  * ```
  */
 

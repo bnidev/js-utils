@@ -25,6 +25,7 @@
  *
  * // Focus an element with ID 'myElement' without removing tabindex
  * focusElement('myElement', false)
+ * ```
  */
 
 export function focusElement(

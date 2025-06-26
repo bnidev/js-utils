@@ -18,9 +18,9 @@
  *
  * @example Usage
  * ```ts
- * const nestedArray = [1, [2, 3], [[4]], 5];
- * const flatArray = flattenArray(nestedArray);
- * console.log(flatArray); // Output: [1, 2, 3, 4, 5]
+ * const nestedArray = [1, [2, 3], [[4]], 5]
+ * const flatArray = flattenArray(nestedArray)
+ * console.log(flatArray) // Output: [1, 2, 3, 4, 5]
  * ```
  */
 
