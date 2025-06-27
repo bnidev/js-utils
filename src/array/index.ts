@@ -2,4 +2,5 @@
 
 export * from './chunkArray'
 export * from './compactArray'
+export * from './differenceArray'
 export * from './flattenArray'
