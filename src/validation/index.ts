@@ -2,3 +2,4 @@
 
 export * from './isEmail'
 export * from './isEqual'
+export * from './isUrl'
