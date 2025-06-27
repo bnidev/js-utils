@@ -13,6 +13,9 @@
  * @categoryDescription Timing
  * Utility functions for managing timing-related tasks, such as throttling, debouncing, and timeouts.
  *
+ * @categoryDescription Validation
+ * Utility functions for validating data types, formats, and structures, including checks for equality, URLs, and more.
+ *
  * @showCategories
  * @module
  */
@@ -24,3 +27,5 @@ export * from './dom'
 export * from './object'
 
 export * from './timing'
+
+export * from './validation'
