@@ -4,6 +4,9 @@
  * @categoryDescription Array
  * Utility functions for working with arrays, including flattening, filtering, and more.
  *
+ * @categoryDescription Async
+ * Utility functions for handling asynchronous operations, such as promises, async/await, and concurrency control.
+ *
  * @categoryDescription DOM
  * Utility functions for working with the Document Object Model (DOM), including element selection, manipulation, and event handling.
  *
@@ -18,6 +21,8 @@
  */
 
 export * from './array'
+
+export * from './async'
 
 export * from './dom'
 
