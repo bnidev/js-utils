@@ -2,3 +2,4 @@
 
 export * from './retryAsyncFn'
 export * from './timeoutAsyncFn'
+export * from './wait'
