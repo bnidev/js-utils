@@ -2,3 +2,4 @@
 
 export * from './capitalize'
 export * from './stripHtmlTags'
+export * from './truncate'
