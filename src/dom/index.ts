@@ -3,6 +3,7 @@
 export * from './focusElement'
 export * from './getElementDimensions'
 export * from './getFocusableElements'
+export * from './isElementInViewport'
 export * from './scrollToElementAfterRender'
 export * from './toggleInertAround'
 export * from './waitForVisibleElement'
