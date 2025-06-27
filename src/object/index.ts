@@ -3,3 +3,4 @@
 export * from './deepClone'
 export * from './getNestedValue'
 export * from './mapValues'
+export * from './omit'
