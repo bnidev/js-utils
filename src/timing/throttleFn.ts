@@ -26,10 +26,10 @@
  *
  * @example Usage
  * ```ts
- * const log = () => console.log('Hello');
- * const throttledLog = throttleFn(log, 1000);
+ * const log = () => console.log('Hello')
+ * const throttledLog = throttleFn(log, 1000)
  *
- * window.addEventListener('scroll', throttledLog);
+ * window.addEventListener('scroll', throttledLog)
  * ```
  */
 

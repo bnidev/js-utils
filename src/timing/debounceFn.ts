@@ -24,7 +24,7 @@
  *   console.log(`Saving input: ${input}`)
  * }
  *
- * debounceFn(saveInput, 300);
+ * debounceFn(saveInput, 300)
  * ```
  */
 
