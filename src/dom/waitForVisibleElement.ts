@@ -4,7 +4,7 @@
  * The function repeatedly checks for the element's presence and visibility,
  * using the provided or default display check, until the element is visible or the timeout is reached.
  *
- * @param id - The ID of the element to wait for.
+ * @param selectorOrElement - The CSS selector string or HTMLElement to wait for.
  * @param options - Optional configuration:
  *   - timeout: Maximum time to wait in milliseconds (default: 2000).
  *   - interval: Polling interval in milliseconds (default: 16).
@@ -49,7 +49,7 @@
  */
 
 export function waitForVisibleElement(
-  id: string,
+  selectorOrElement: string | HTMLElement,
   options?: {
     timeout?: number
     interval?: number
@@ -67,19 +67,24 @@ export function waitForVisibleElement(
   const displayCheck = options?.displayCheck ?? defaultDisplayCheck
 
   return new Promise((resolve, reject) => {
+    let element: HTMLElement | null
+
     const start = performance.now()
 
     const check = () => {
-      const el = document.getElementById(id)
-      if (el) {
-        const style = getComputedStyle(el)
-        if (displayCheck(style)) return resolve(el)
+      if (typeof selectorOrElement === 'string') {
+        element = document.querySelector<HTMLElement>(selectorOrElement)
+      } else {
+        element = selectorOrElement
+      }
+
+      if (element) {
+        const style = getComputedStyle(element)
+        if (displayCheck(style)) return resolve(element)
       }
 
       if (performance.now() - start > timeout) {
-        return reject(
-          new Error(`Element #${id} not visible within ${timeout}ms`)
-        )
+        return reject(new Error(`Element was not visible within ${timeout}ms`))
       }
 
       setTimeout(check, interval)

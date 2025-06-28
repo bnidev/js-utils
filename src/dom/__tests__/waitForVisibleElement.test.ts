@@ -26,7 +26,7 @@ describe('waitForVisibleElement', () => {
   })
 
   it('resolves when the element becomes visible', async () => {
-    const promise = waitForVisibleElement('visible-element')
+    const promise = waitForVisibleElement('#visible-element')
 
     // Inject the element after a short "timeout"
     setTimeout(() => {
@@ -60,7 +60,7 @@ describe('waitForVisibleElement', () => {
     const customCheck = (style: CSSStyleDeclaration) =>
       style.display === 'block'
 
-    const promise = waitForVisibleElement('custom-display-check', {
+    const promise = waitForVisibleElement('#custom-display-check', {
       timeout: 200,
       interval: 10,
       displayCheck: customCheck
@@ -76,7 +76,7 @@ describe('waitForVisibleElement', () => {
     const timeout = 100
     const interval = 10
 
-    const promise = waitForVisibleElement('missing-element', {
+    const promise = waitForVisibleElement('#missing-element', {
       timeout,
       interval
     })
@@ -95,7 +95,20 @@ describe('waitForVisibleElement', () => {
 
     // Now the promise should be rejected
     await expect(promise).rejects.toThrow(
-      `Element #missing-element not visible within ${timeout}ms`
+      `Element was not visible within ${timeout}ms`
     )
+  })
+
+  it('resolves immediately if the passed HTMLElement is already visible', async () => {
+    const el = document.createElement('div')
+    el.style.display = 'block'
+    el.style.visibility = 'visible'
+    el.style.opacity = '1'
+    document.body.appendChild(el)
+
+    const promise = waitForVisibleElement(el)
+
+    const resolvedEl = await promise
+    expect(resolvedEl).toBe(el)
   })
 })
