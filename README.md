@@ -9,17 +9,28 @@ A collection of modern, typed JavaScript utility functions for working with arra
 ## ✨ Features
 
 - ✅ Fully typed with TypeScript
-- 🧩 Modular structure (array, DOM, object, timing)
-- 🧼 Consistent formatting with [Biome](https://biomejs.dev/)
+- 📦 Tree-shakable (ESM support)
+- 🧩 Modular structure (array, DOM, object, validation, etc.)
 - 📚 Auto-generated documentation via [TypeDoc](https://typedoc.org)
+- 🧪 Tested with [Vitest](https://vitest.dev)
 
 ## 📦 Installation
 
+### npm
+
+```bash
+npm install @bnidev/js-utils
+```
+
+### pnpm
+
 ```bash
 pnpm add @bnidev/js-utils
-# or
-npm install @bnidev/js-utils
-# or
+```
+
+### yarn
+
+```bash
 yarn add @bnidev/js-utils
 ```
 
@@ -28,7 +39,7 @@ yarn add @bnidev/js-utils
 ```ts
 import { debounceFn, flattenArray, deepClone } from "@bnidev/js-utils";
 
-// Debounce an input handler
+// Debounce any function
 const log = (val: string) => console.log(val);
 const debouncedLog = debounceFn(log, 300);
 
@@ -48,19 +59,31 @@ Generated automatically using [TypeDoc](https://typedoc.org/).
 
 ## 🧪 Development & Testing
 
-To run lint and formatting checks:
+Run lint and formatting checks:
 
 ```bash
 pnpm run check
 ```
 
-To build the package:
+Run lint and formatting checks & autofix if possible:
+
+```bash
+pnpm run check:fix
+```
+
+Run tests with coverage report:
+
+```bash
+pnpm run test:coverage
+```
+
+Build the package:
 
 ```bash
 pnpm run build
 ```
 
-To generate docs:
+Generate docs:
 
 ```bash
 pnpm run docs:build
