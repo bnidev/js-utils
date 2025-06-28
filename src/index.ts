@@ -13,6 +13,9 @@
  * @categoryDescription Object
  * Utility functions for working with objects, including deep cloning, merging, and property manipulation.
  *
+ * @categoryDescription String
+ * Utility functions for string manipulation, including formatting, parsing, and validation.
+ *
  * @categoryDescription Timing
  * Utility functions for managing timing-related tasks, such as throttling, debouncing, and timeouts.
  *
@@ -30,6 +33,8 @@ export * from './async'
 export * from './dom'
 
 export * from './object'
+
+export * from './string'
 
 export * from './timing'
 
