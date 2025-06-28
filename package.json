@@ -13,7 +13,9 @@
     "check:fix": "biome check --write .",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "version": "changeset version",
+    "postversion": "changeset-formatter"
   },
   "files": [
     "dist",
