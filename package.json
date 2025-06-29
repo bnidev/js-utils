@@ -58,7 +58,7 @@
     "changeset-formatter": "^0.0.1",
     "happy-dom": "^18.0.1",
     "tsup": "^8.5.0",
-    "typedoc": "^0.28.5",
+    "typedoc": "^0.28.6",
     "typedoc-github-theme": "^0.3.0",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
