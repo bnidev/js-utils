@@ -35,4 +35,20 @@ describe('stripHtmlTags', () => {
       'This is bold and italic text.'
     )
   })
+
+  it('throws if input exceeds default maxLength of 1000', () => {
+    const longInput = `<p>${'x'.repeat(1001)}</p>`
+    expect(() => stripHtmlTags(longInput)).toThrow('Input too long')
+  })
+
+  it('does not throw if input is exactly at default maxLength', () => {
+    const validInput = `<p>${'x'.repeat(993)}</p>` // Total 1000 chars
+    expect(() => stripHtmlTags(validInput)).not.toThrow()
+  })
+
+  it('respects custom maxLength argument', () => {
+    const input = `<span>${'a'.repeat(5000)}</span>`
+    expect(() => stripHtmlTags(input, 6000)).not.toThrow()
+    expect(() => stripHtmlTags(input, 1000)).toThrow('Input too long')
+  })
 })
