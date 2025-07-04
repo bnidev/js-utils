@@ -1,5 +1,5 @@
 /**
- * Scrolls the element with the specified ID or element reference into view after the next render frame.
+ * Scrolls the element with the specified CSS selector or element reference into view after the next render frame.
  *
  * Uses `requestAnimationFrame` to ensure the scroll occurs after rendering.
  *
