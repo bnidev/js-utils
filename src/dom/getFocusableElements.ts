@@ -3,7 +3,7 @@
  * Focusable elements include links, buttons, textareas, inputs, selects,
  * and elements with a positive tabindex.
  *
- * @param {HTMLElement} container - The container element to search within.
+ * @param containerOrSelector - A CSS selector string or an HTMLElement representing the container.
  * @returns {HTMLElement[]} An array of focusable elements.
  *
  * @remarks
@@ -23,14 +23,29 @@
  *
  * @example Usage
  * ```ts
- * // Get all focusable elements within a modal dialog
+ * // With a selector
+ * const focusables = getFocusableElements('.modal')
+ *
+ * // With a direct HTMLElement
  * const modal = document.querySelector('.modal')
- * const focusableElements = getFocusableElements(modal)
- * // Log the focusable elements
- * console.log(focusableElements)
+ * if (modal) {
+ *   const focusables = getFocusableElements(modal)
+ * }
  * ```
  */
-export function getFocusableElements(container: HTMLElement): HTMLElement[] {
+export function getFocusableElements(
+  containerOrSelector: string | HTMLElement
+): HTMLElement[] {
+  let container: HTMLElement | null
+
+  if (typeof containerOrSelector === 'string') {
+    container = document.querySelector<HTMLElement>(containerOrSelector)
+  } else {
+    container = containerOrSelector
+  }
+
+  if (!container) return []
+
   const elements = container.querySelectorAll<HTMLElement>(
     'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])'
   )

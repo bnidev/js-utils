@@ -1,10 +1,12 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { getFocusableElements } from '../getFocusableElements'
 
 describe('getFocusableElements', () => {
-  it('returns only focusable elements', () => {
-    // Create a mock container with various elements
-    const container = document.createElement('div')
+  let container: HTMLElement
+
+  beforeEach(() => {
+    container = document.createElement('div')
+    container.id = 'test-container'
     container.innerHTML = `
       <a href="#">Link</a>
       <button>Button</button>
@@ -19,12 +21,16 @@ describe('getFocusableElements', () => {
       <div style="display: none" tabindex="0">Hidden via display</div>
       <div style="visibility: hidden" tabindex="0">Hidden via visibility</div>
     `
-
     document.body.appendChild(container)
+  })
 
+  afterEach(() => {
+    container.remove()
+  })
+
+  it('returns only visible, enabled focusable elements from an HTMLElement', () => {
     const result = getFocusableElements(container)
 
-    // Should return the valid, visible focusable elements
     expect(result).toHaveLength(6)
     expect(result.map((el) => el.tagName.toLowerCase())).toEqual([
       'a',
@@ -34,18 +40,36 @@ describe('getFocusableElements', () => {
       'textarea',
       'div'
     ])
-
-    document.body.removeChild(container)
   })
 
-  it('returns an empty array if no focusable elements exist', () => {
-    const container = document.createElement('div')
-    container.innerHTML = `
-      <div>Plain text</div>
-      <span>Span</span>
-    `
+  it('returns only visible, enabled focusable elements from a selector', () => {
+    const result = getFocusableElements('#test-container')
 
-    const result = getFocusableElements(container)
+    expect(result).toHaveLength(6)
+    expect(result.map((el) => el.tagName.toLowerCase())).toEqual([
+      'a',
+      'button',
+      'input',
+      'select',
+      'textarea',
+      'div'
+    ])
+  })
+
+  it('returns an empty array when container selector does not match', () => {
+    const result = getFocusableElements('#non-existent')
     expect(result).toEqual([])
+  })
+
+  it('returns an empty array if container has no focusable elements', () => {
+    const emptyContainer = document.createElement('div')
+    emptyContainer.id = 'empty'
+    emptyContainer.innerHTML = `<p>Text only</p><span>No tabindex</span>`
+    document.body.appendChild(emptyContainer)
+
+    const result = getFocusableElements('#empty')
+    expect(result).toEqual([])
+
+    emptyContainer.remove()
   })
 })
