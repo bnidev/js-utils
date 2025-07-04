@@ -104,4 +104,30 @@ describe('isElementInViewport', () => {
   it('returns false if the element is null', () => {
     expect(isElementInViewport(null as unknown as HTMLElement)).toBe(false)
   })
+
+  it('returns true when given a selector of a visible element', () => {
+    const el = document.createElement('div')
+    el.id = 'visible-element'
+    document.body.appendChild(el)
+
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+      top: 50,
+      left: 50,
+      bottom: 150,
+      right: 150,
+      width: 100,
+      height: 100,
+      x: 50,
+      y: 50,
+      toJSON: () => {}
+    })
+
+    expect(isElementInViewport('#visible-element')).toBe(true)
+
+    document.body.removeChild(el)
+  })
+
+  it('returns false when given a selector that matches no element', () => {
+    expect(isElementInViewport('#non-existent')).toBe(false)
+  })
 })
