@@ -1,7 +1,7 @@
 /**
  * Determines if a given element is currently visible in the viewport.
  *
- * @param el - The DOM element to check.
+ * @param selectorOrElement - A CSS selector string or an HTMLElement.
  * @returns `true` if the element is in the viewport, `false` otherwise.
  *
  * @remarks
@@ -20,18 +20,29 @@
  *
  * @example Usage
  * ```ts
- * const el = document.querySelector('#my-element')
- * if (isElementInViewport(el)) {
- *   console.log('Element is visible')
+ * // With a CSS selector
+ * if (isElementInViewport('#my-element')) {
+ *   console.log('Visible')
+ * }
+ *
+ * // With an element
+ * const el = document.getElementById('my-element')
+ * if (el && isElementInViewport(el)) {
+ *   console.log('Also visible')
  * }
  * ```
  */
-export function isElementInViewport(el: HTMLElement): boolean {
-  if (!el) {
-    return false
-  }
+export function isElementInViewport(
+  selectorOrElement: string | HTMLElement
+): boolean {
+  const element =
+    typeof selectorOrElement === 'string'
+      ? document.querySelector<HTMLElement>(selectorOrElement)
+      : selectorOrElement
 
-  const rect = el.getBoundingClientRect()
+  if (!element) return false
+
+  const rect = element.getBoundingClientRect()
 
   return (
     rect.top >= 0 &&
