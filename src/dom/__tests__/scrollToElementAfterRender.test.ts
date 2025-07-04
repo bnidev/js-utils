@@ -24,24 +24,83 @@ describe('scrollToElementAfterRender', () => {
     vi.restoreAllMocks()
   })
 
-  it('calls scrollIntoView with smooth behavior by default', () => {
-    scrollToElementAfterRender('test-element')
+  it('scrolls via selector with smooth behavior by default', () => {
+    scrollToElementAfterRender('#test-element')
 
     expect(element.scrollIntoView).toHaveBeenCalledWith({
       behavior: 'smooth'
     })
   })
 
-  it('calls scrollIntoView with auto behavior when smooth is false', () => {
-    scrollToElementAfterRender('test-element', false)
+  it('scrolls via selector with auto behavior when smooth is false', () => {
+    scrollToElementAfterRender('#test-element', false)
 
     expect(element.scrollIntoView).toHaveBeenCalledWith({
       behavior: 'auto'
     })
   })
 
-  it('does nothing if the element is not found', () => {
-    // Should not throw
-    expect(() => scrollToElementAfterRender('non-existent')).not.toThrow()
+  it('scrolls via HTMLElement reference with smooth behavior by default', () => {
+    scrollToElementAfterRender(element)
+
+    expect(element.scrollIntoView).toHaveBeenCalledWith({
+      behavior: 'smooth'
+    })
+  })
+
+  it('scrolls via HTMLElement reference with auto behavior', () => {
+    scrollToElementAfterRender(element, false)
+
+    expect(element.scrollIntoView).toHaveBeenCalledWith({
+      behavior: 'auto'
+    })
+  })
+
+  it('does nothing if element is not found via selector', () => {
+    expect(() => scrollToElementAfterRender('#non-existent')).not.toThrow()
+  })
+
+  it('does nothing if null is passed', () => {
+    expect(() =>
+      scrollToElementAfterRender(null as unknown as string)
+    ).not.toThrow()
+  })
+
+  it('calls onScrollComplete callback with success info', () => {
+    return new Promise<void>((resolve, reject) => {
+      scrollToElementAfterRender(
+        '#test-element',
+        true,
+        ({ element: el, error, durationMs }) => {
+          try {
+            expect(el).toBe(element)
+            expect(error).toBeUndefined()
+            expect(typeof durationMs).toBe('number')
+            resolve()
+          } catch (err) {
+            reject(err)
+          }
+        }
+      )
+    })
+  })
+
+  it('calls onScrollComplete callback with error info when scrollIntoView throws', () => {
+    // Mock scrollIntoView to throw error
+    element.scrollIntoView = vi.fn(() => {
+      throw new Error('scroll error')
+    })
+
+    return new Promise<void>((resolve, reject) => {
+      scrollToElementAfterRender('#test-element', true, ({ error }) => {
+        try {
+          expect(error).toBeInstanceOf(Error)
+          expect((error as Error).message).toBe('scroll error')
+          resolve()
+        } catch (err) {
+          reject(err)
+        }
+      })
+    })
   })
 })
