@@ -32,6 +32,8 @@ export * from './async'
 
 export * from './dom'
 
+export * from './math'
+
 export * from './object'
 
 export * from './string'
