@@ -37,7 +37,7 @@ export function isElementInViewport(
 ): boolean {
   const element =
     typeof selectorOrElement === 'string'
-      ? document.querySelector(selectorOrElement)
+      ? document.querySelector<HTMLElement>(selectorOrElement)
       : selectorOrElement
 
   if (!element) return false
