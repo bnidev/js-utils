@@ -1,5 +1,24 @@
 # @bnidev/js-utils
 
+## 0.2.0 (2025-07-04)
+
+### ✨ Features
+
+- **DOM:** Accept both CSS selector strings and HTMLElements as input (all utilities) (#19) (d6149dc)
+- **DOM:** Add `onScrollComplete` callback and error handling in `scrollToElementAfterRender` (#19) (d6149dc)
+- **DOM:** Return `null` or empty array when elements are not found (`getElementDimensions`, `getFocusableElements`, `isElementInViewport`) (#19) (d6149dc)
+- **DOM:** Return an object in `focusElement` to provide useful feedback and enable follow-up handling (#19) (d6149dc)
+- **DOM:** Add error handling and return error in `focusElement` if `focus()` throws (#19) (d6149dc)
+- **Math:** Add `degreesToRadians` and `radiansToDegrees` utilities to convert between degrees and radians (#18) (0114415)
+- **Math:** Add `haversineDistance` utility to calculate the distance between two geographic coordinates (#18) (0114415)
+- **Math:** Add `distance` utility to calculate the distance between two points (#18) (0114415)
+- **Math:** Add `pointInCircle` utility to check whether a point lies inside or on the boundary of a circle (#18) (0114415)
+- **String:** `stripHtmlTags` now supports an optional `maxLength` parameter to mitigate regex denial-of-service (ReDoS) risks (#17) (ec109d1)
+
+### 🛠️ Fixes
+
+- **DOM:** Safely handle null parent nodes in `toggleInertAround` to prevent errors (#19) (d6149dc)
+
 ## 0.1.0 (2025-06-28)
 
 ### ✨ Features
