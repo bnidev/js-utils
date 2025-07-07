@@ -13,6 +13,9 @@
  * @categoryDescription Object
  * Utility functions for working with objects, including deep cloning, merging, and property manipulation.
  *
+ * @categoryDescription Sanitize
+ * Utility functions for sanitizing and validating data, such as JSON, HTML, and URLs, to prevent security issues like XSS and injection attacks.
+ *
  * @categoryDescription String
  * Utility functions for string manipulation, including formatting, parsing, and validation.
  *
@@ -35,6 +38,8 @@ export * from './dom'
 export * from './math'
 
 export * from './object'
+
+export * from './sanitize'
 
 export * from './string'
 
