@@ -2,3 +2,4 @@
 
 export * from './sanitizeHtml'
 export * from './sanitizeJson'
+export * from './sanitizeUrl'
