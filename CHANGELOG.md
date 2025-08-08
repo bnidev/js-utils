@@ -1,5 +1,16 @@
 # @bnidev/js-utils
 
+## 0.3.0 (2025-08-08)
+
+### ✨ Features
+
+- **DOM:** Add `onOrientationChange` utility to listen for device orientation changes (#28) (929622d)
+- **DOM:** Add `onResize` utility with support for `window`, `document`, and `HTMLElement` resize (#28) (929622d)
+- **String:** Add `escapeHtml` utility to escape special HTML characters (#27) (5ac2432)
+- **Sanitize:** Add `sanitizeJson` utility for safe JSON parsing (#22) (3b15f92)
+- **Sanitize:** Add `sanitizeHtml` utility for rich-text HTML cleaning (#22) (3b15f92)
+- **Sanitize:** Add `sanitizeUrl` utility with protocol allowlist (#22) (3b15f92)
+
 ## 0.2.0 (2025-07-04)
 
 ### ✨ Features
