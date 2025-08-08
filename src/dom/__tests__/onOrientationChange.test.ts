@@ -6,7 +6,6 @@ describe('onOrientationChange', () => {
 
   beforeEach(() => {
     originalScreen = window.screen
-    // @ts-ignore
     window.screen = {
       orientation: {
         type: 'portrait-primary',
@@ -16,7 +15,13 @@ describe('onOrientationChange', () => {
         onchange: null,
         unlock: vi.fn(),
         dispatchEvent: vi.fn()
-      }
+      },
+      availHeight: 0,
+      availWidth: 0,
+      colorDepth: 0,
+      height: 0,
+      width: 0,
+      pixelDepth: 0
     }
   })
 
@@ -41,8 +46,7 @@ describe('onOrientationChange', () => {
   })
 
   it('should return undefined if Screen Orientation API is not supported', () => {
-    // @ts-ignore
-    window.screen = {}
+    window.screen = {} as Screen
     const callback = vi.fn()
     const listener = onOrientationChange(callback)
     expect(listener).toBeUndefined()
