@@ -36,12 +36,12 @@
  */
 export function onResize(
   callback: () => void,
-  options: {
+  options?: {
     element?: typeof window | typeof document | HTMLElement
     delay?: number
   }
 ): () => void {
-  const { element = window, delay = 50 } = options
+  const { element = window, delay = 50 } = options ?? {}
   if (element === window || element === document) {
     return onWindowResize(callback, delay)
   }
