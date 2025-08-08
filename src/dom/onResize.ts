@@ -73,7 +73,7 @@ export function onResize(
  * ```
  */
 export function onWindowResize(callback: () => void, delay = 50) {
-  let timeout: number
+  let timeout: ReturnType<typeof setTimeout>
   const handler = () => {
     clearTimeout(timeout)
     timeout = setTimeout(callback, delay)
