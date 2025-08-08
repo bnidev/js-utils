@@ -60,7 +60,7 @@ export function onResize(
  * Registers a debounced callback for the window resize event.
  *
  * @param callback - The function to call after a resize event.
- * @param delay - Debounce delay in milliseconds. Defaults to `150`.
+ * @param delay - Debounce delay in milliseconds. Defaults to `50`.
  * @returns A cleanup function to remove the event listener.
  *
  * @category DOM
@@ -72,7 +72,7 @@ export function onResize(
  * }, 100)
  * ```
  */
-export function onWindowResize(callback: () => void, delay = 150) {
+export function onWindowResize(callback: () => void, delay = 50) {
   let timeout: number
   const handler = () => {
     clearTimeout(timeout)
