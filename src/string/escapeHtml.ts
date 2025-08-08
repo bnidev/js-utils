@@ -36,6 +36,7 @@ export function escapeHtml(html: string): string {
       case "'":
         return '&#39;'
       default:
+        // This should never happen because of the regex, but included for safety
         throw new Error(`Unexpected character: ${char}`)
     }
   })
