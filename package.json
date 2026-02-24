@@ -52,14 +52,14 @@
   },
   "packageManager": "pnpm@10.12.1",
   "devDependencies": {
-    "@biomejs/biome": "2.2.6",
-    "@changesets/cli": "^2.29.7",
+    "@biomejs/biome": "2.4.4",
+    "@changesets/cli": "^2.29.8",
     "@vitest/coverage-v8": "3.2.4",
     "changeset-formatter": "^0.0.1",
     "happy-dom": "^20.0.7",
     "tsup": "^8.5.1",
     "typedoc": "^0.28.14",
-    "typedoc-github-theme": "^0.3.1",
+    "typedoc-github-theme": "^0.4.0",
     "typescript": "^5.9.3",
     "vitest": "^3.2.4"
   }
