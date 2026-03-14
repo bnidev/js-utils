@@ -13,16 +13,16 @@ importers:
         version: 2.4.4
       '@changesets/cli':
         specifier: ^2.30.0
-        version: 2.30.0(@types/node@25.3.0)
+        version: 2.30.0(@types/node@25.5.0)
       '@vitest/coverage-v8':
         specifier: 3.2.4
-        version: 3.2.4(vitest@3.2.4(@types/node@25.3.0)(happy-dom@20.7.0)(yaml@2.8.2))
+        version: 3.2.4(vitest@3.2.4(@types/node@25.5.0)(happy-dom@20.8.4)(yaml@2.8.2))
       changeset-formatter:
         specifier: ^0.0.1
-        version: 0.0.1(@changesets/cli@2.30.0(@types/node@25.3.0))(typescript@5.9.3)
+        version: 0.0.1(@changesets/cli@2.30.0(@types/node@25.5.0))(typescript@5.9.3)
       happy-dom:
-        specifier: ^20.0.7
-        version: 20.7.0
+        specifier: ^20.8.4
+        version: 20.8.4
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.2)
@@ -37,7 +37,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/node@25.3.0)(happy-dom@20.7.0)(yaml@2.8.2)
+        version: 3.2.4(@types/node@25.5.0)(happy-dom@20.8.4)(yaml@2.8.2)
 
 packages:
 
@@ -703,8 +703,8 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@25.3.0':
-    resolution: {integrity: sha512-4K3bqJpXpqfg2XKGK9bpDTc6xO/xoUP/RBWS7AtRMug6zZFaRekiLzjVtAoZMquxoAbzBvy5nxQ7veS5eYzf8A==}
+  '@types/node@25.5.0':
+    resolution: {integrity: sha512-jp2P3tQMSxWugkCUKLRPVUpGaL5MVFwF8RDuSRztfwgN1wmqJeMSbKlnEtQqU8UrhTmzEmZdu2I6v2dpp7XIxw==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
@@ -1032,8 +1032,8 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
-  happy-dom@20.7.0:
-    resolution: {integrity: sha512-hR/uLYQdngTyEfxnOoa+e6KTcfBFyc1hgFj/Cc144A5JJUuHFYqIEBDcD4FeGqUeKLRZqJ9eN9u7/GDjYEgS1g==}
+  happy-dom@20.8.4:
+    resolution: {integrity: sha512-GKhjq4OQCYB4VLFBzv8mmccUadwlAusOZOI7hC1D9xDIT5HhzkJK17c4el2f6R6C715P9xB4uiMxeKUa2nHMwQ==}
     engines: {node: '>=20.0.0'}
 
   has-flag@4.0.0:
@@ -1762,7 +1762,7 @@ snapshots:
     dependencies:
       '@changesets/types': 6.1.0
 
-  '@changesets/cli@2.30.0(@types/node@25.3.0)':
+  '@changesets/cli@2.30.0(@types/node@25.5.0)':
     dependencies:
       '@changesets/apply-release-plan': 7.1.0
       '@changesets/assemble-release-plan': 6.0.9
@@ -1778,7 +1778,7 @@ snapshots:
       '@changesets/should-skip-package': 0.1.2
       '@changesets/types': 6.1.0
       '@changesets/write': 0.4.0
-      '@inquirer/external-editor': 1.0.3(@types/node@25.3.0)
+      '@inquirer/external-editor': 1.0.3(@types/node@25.5.0)
       '@manypkg/get-packages': 1.1.3
       ansi-colors: 4.1.3
       enquirer: 2.4.1
@@ -2040,12 +2040,12 @@ snapshots:
       '@shikijs/types': 3.22.0
       '@shikijs/vscode-textmate': 10.0.2
 
-  '@inquirer/external-editor@1.0.3(@types/node@25.3.0)':
+  '@inquirer/external-editor@1.0.3(@types/node@25.5.0)':
     dependencies:
       chardet: 2.1.1
       iconv-lite: 0.7.2
     optionalDependencies:
-      '@types/node': 25.3.0
+      '@types/node': 25.5.0
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -2218,7 +2218,7 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@25.3.0':
+  '@types/node@25.5.0':
     dependencies:
       undici-types: 7.18.2
 
@@ -2228,9 +2228,9 @@ snapshots:
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 25.3.0
+      '@types/node': 25.5.0
 
-  '@vitest/coverage-v8@3.2.4(vitest@3.2.4(@types/node@25.3.0)(happy-dom@20.7.0)(yaml@2.8.2))':
+  '@vitest/coverage-v8@3.2.4(vitest@3.2.4(@types/node@25.5.0)(happy-dom@20.8.4)(yaml@2.8.2))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 1.0.2
@@ -2245,7 +2245,7 @@ snapshots:
       std-env: 3.9.0
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/node@25.3.0)(happy-dom@20.7.0)(yaml@2.8.2)
+      vitest: 3.2.4(@types/node@25.5.0)(happy-dom@20.8.4)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -2257,13 +2257,13 @@ snapshots:
       chai: 5.2.0
       tinyrainbow: 2.0.0
 
-  '@vitest/mocker@3.2.4(vite@6.3.5(@types/node@25.3.0)(yaml@2.8.2))':
+  '@vitest/mocker@3.2.4(vite@6.3.5(@types/node@25.5.0)(yaml@2.8.2))':
     dependencies:
       '@vitest/spy': 3.2.4
       estree-walker: 3.0.3
       magic-string: 0.30.17
     optionalDependencies:
-      vite: 6.3.5(@types/node@25.3.0)(yaml@2.8.2)
+      vite: 6.3.5(@types/node@25.5.0)(yaml@2.8.2)
 
   '@vitest/pretty-format@3.2.4':
     dependencies:
@@ -2354,9 +2354,9 @@ snapshots:
       loupe: 3.1.4
       pathval: 2.0.0
 
-  changeset-formatter@0.0.1(@changesets/cli@2.30.0(@types/node@25.3.0))(typescript@5.9.3):
+  changeset-formatter@0.0.1(@changesets/cli@2.30.0(@types/node@25.5.0))(typescript@5.9.3):
     dependencies:
-      '@changesets/cli': 2.30.0(@types/node@25.3.0)
+      '@changesets/cli': 2.30.0(@types/node@25.5.0)
       cosmiconfig: 9.0.0(typescript@5.9.3)
     transitivePeerDependencies:
       - typescript
@@ -2582,9 +2582,9 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  happy-dom@20.7.0:
+  happy-dom@20.8.4:
     dependencies:
-      '@types/node': 25.3.0
+      '@types/node': 25.5.0
       '@types/whatwg-mimetype': 3.0.2
       '@types/ws': 8.18.1
       entities: 7.0.1
@@ -3070,13 +3070,13 @@ snapshots:
 
   universalify@0.1.2: {}
 
-  vite-node@3.2.4(@types/node@25.3.0)(yaml@2.8.2):
+  vite-node@3.2.4(@types/node@25.5.0)(yaml@2.8.2):
     dependencies:
       cac: 6.7.14
       debug: 4.4.3
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 6.3.5(@types/node@25.3.0)(yaml@2.8.2)
+      vite: 6.3.5(@types/node@25.5.0)(yaml@2.8.2)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -3091,7 +3091,7 @@ snapshots:
       - tsx
       - yaml
 
-  vite@6.3.5(@types/node@25.3.0)(yaml@2.8.2):
+  vite@6.3.5(@types/node@25.5.0)(yaml@2.8.2):
     dependencies:
       esbuild: 0.25.12
       fdir: 6.4.6(picomatch@4.0.2)
@@ -3100,15 +3100,15 @@ snapshots:
       rollup: 4.53.3
       tinyglobby: 0.2.15
     optionalDependencies:
-      '@types/node': 25.3.0
+      '@types/node': 25.5.0
       fsevents: 2.3.3
       yaml: 2.8.2
 
-  vitest@3.2.4(@types/node@25.3.0)(happy-dom@20.7.0)(yaml@2.8.2):
+  vitest@3.2.4(@types/node@25.5.0)(happy-dom@20.8.4)(yaml@2.8.2):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
-      '@vitest/mocker': 3.2.4(vite@6.3.5(@types/node@25.3.0)(yaml@2.8.2))
+      '@vitest/mocker': 3.2.4(vite@6.3.5(@types/node@25.5.0)(yaml@2.8.2))
       '@vitest/pretty-format': 3.2.4
       '@vitest/runner': 3.2.4
       '@vitest/snapshot': 3.2.4
@@ -3126,12 +3126,12 @@ snapshots:
       tinyglobby: 0.2.14
       tinypool: 1.1.1
       tinyrainbow: 2.0.0
-      vite: 6.3.5(@types/node@25.3.0)(yaml@2.8.2)
-      vite-node: 3.2.4(@types/node@25.3.0)(yaml@2.8.2)
+      vite: 6.3.5(@types/node@25.5.0)(yaml@2.8.2)
+      vite-node: 3.2.4(@types/node@25.5.0)(yaml@2.8.2)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 25.3.0
-      happy-dom: 20.7.0
+      '@types/node': 25.5.0
+      happy-dom: 20.8.4
     transitivePeerDependencies:
       - jiti
       - less
