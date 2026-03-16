@@ -10,6 +10,9 @@
  * @categoryDescription DateTime
  * Utility functions for working with dates and times, including formatting and validation.
  *
+ * @categoryDescription Color
+ * Utility functions for working with colors, including hex and RGB conversions.
+ *
  * @categoryDescription DOM
  * Utility functions for working with the Document Object Model (DOM), including element selection, manipulation, and event handling.
  *
@@ -35,7 +38,7 @@
 export * from './array'
 
 export * from './async'
-
+export * from './color'
 export * from './datetime'
 
 export * from './dom'
