@@ -7,6 +7,9 @@
  * @categoryDescription Async
  * Utility functions for handling asynchronous operations, such as promises, async/await, and concurrency control.
  *
+ * @categoryDescription DateTime
+ * Utility functions for working with dates and times, including formatting and validation.
+ *
  * @categoryDescription Color
  * Utility functions for working with colors, including hex and RGB conversions.
  *
@@ -35,8 +38,8 @@
 export * from './array'
 
 export * from './async'
-
 export * from './color'
+export * from './datetime'
 
 export * from './dom'
 
