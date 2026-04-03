@@ -59,7 +59,7 @@
     "glob": "^13.0.0",
     "happy-dom": "^20.8.8",
     "tsup": "^8.5.1",
-    "typedoc": "^0.28.14",
+    "typedoc": "^0.28.18",
     "typedoc-github-theme": "^0.4.0",
     "typescript": "^5.9.3",
     "vitest": "^4.1.0"
