@@ -36,21 +36,27 @@
  * // → '<p>Hi <strong>there</strong></p>'
  * ```
  */
+const DEFAULT_ALLOWED_TAGS = [
+  'b',
+  'i',
+  'em',
+  'strong',
+  'a',
+  'ul',
+  'ol',
+  'li',
+  'p',
+  'br'
+]
+
+const DEFAULT_ALLOWED_ATTRIBUTES: Record<string, string[]> = {
+  a: ['href', 'target', 'rel']
+}
+
 export function sanitizeHtml(
   dirtyHtml: string,
-  allowedTags: string[] = [
-    'b',
-    'i',
-    'em',
-    'strong',
-    'a',
-    'ul',
-    'ol',
-    'li',
-    'p',
-    'br'
-  ],
-  allowedAttributes: Record<string, string[]> = { a: ['href', 'target', 'rel'] }
+  allowedTags: string[] = DEFAULT_ALLOWED_TAGS,
+  allowedAttributes: Record<string, string[]> = DEFAULT_ALLOWED_ATTRIBUTES
 ): string {
   const parser = new DOMParser()
   const doc = parser.parseFromString(dirtyHtml, 'text/html')
