@@ -1,6 +1,19 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { lockBodyScroll, unlockBodyScroll } from '../bodyScrollLock'
 
+function mockViewportWidths(innerWidth: number, clientWidth: number): void {
+  Object.defineProperty(globalThis, 'innerWidth', {
+    configurable: true,
+    writable: true,
+    value: innerWidth
+  })
+  Object.defineProperty(document.documentElement, 'clientWidth', {
+    configurable: true,
+    writable: true,
+    value: clientWidth
+  })
+}
+
 describe('bodyScrollLock', () => {
   let originalOverflow: string
   let originalPaddingRight: string
@@ -40,16 +53,7 @@ describe('bodyScrollLock', () => {
   })
 
   it('locks scroll: sets overflow hidden and adjusts paddingRight when scrollbar present', () => {
-    Object.defineProperty(globalThis, 'innerWidth', {
-      configurable: true,
-      writable: true,
-      value: 1000
-    })
-    Object.defineProperty(document.documentElement, 'clientWidth', {
-      configurable: true,
-      writable: true,
-      value: 980
-    })
+    mockViewportWidths(1000, 980)
 
     document.body.style.paddingRight = '5px'
 
@@ -64,16 +68,7 @@ describe('bodyScrollLock', () => {
   })
 
   it('locks scroll: does not add paddingRight if no scrollbar', () => {
-    Object.defineProperty(globalThis, 'innerWidth', {
-      configurable: true,
-      writable: true,
-      value: 1000
-    })
-    Object.defineProperty(document.documentElement, 'clientWidth', {
-      configurable: true,
-      writable: true,
-      value: 1000
-    })
+    mockViewportWidths(1000, 1000)
 
     document.body.style.paddingRight = '5px'
 
@@ -88,16 +83,7 @@ describe('bodyScrollLock', () => {
   })
 
   it('does not override lock if already locked', () => {
-    Object.defineProperty(globalThis, 'innerWidth', {
-      configurable: true,
-      writable: true,
-      value: 1000
-    })
-    Object.defineProperty(document.documentElement, 'clientWidth', {
-      configurable: true,
-      writable: true,
-      value: 980
-    })
+    mockViewportWidths(1000, 980)
 
     document.body.style.paddingRight = '5px'
 
@@ -143,11 +129,7 @@ describe('bodyScrollLock', () => {
   })
 
   it('lock scroll twice: second call does not override dataset attributes', () => {
-    Object.defineProperty(globalThis, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: 1000
-    })
+    mockViewportWidths(1000, 980)
     Object.defineProperty(document.documentElement, 'clientWidth', {
       writable: true,
       configurable: true,
