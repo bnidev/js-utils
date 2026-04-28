@@ -62,7 +62,7 @@ export function waitForVisibleElement(
   const defaultDisplayCheck = (style: CSSStyleDeclaration) =>
     style.display !== 'none' &&
     style.visibility !== 'hidden' &&
-    parseFloat(style.opacity) > 0
+    Number.parseFloat(style.opacity) > 0
 
   const displayCheck = options?.displayCheck ?? defaultDisplayCheck
 

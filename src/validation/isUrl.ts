@@ -35,7 +35,7 @@ export function isUrl(url: string): boolean {
     if (!parsed.hostname) return false
 
     // Basic sanity check: url must contain "//" after protocol (e.g., http://)
-    if (!url.match(/^[a-zA-Z]+:\/\/.+/)) return false
+    if (!/^[a-zA-Z]+:\/\/.+/.exec(url)) return false
 
     return true
   } catch {

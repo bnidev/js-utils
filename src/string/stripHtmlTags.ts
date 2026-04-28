@@ -39,7 +39,7 @@ export function stripHtmlTags(html: string, maxLength = 1000): string {
 
   do {
     prev = current
-    current = current.replace(/<[^<>]*>/g, '')
+    current = current.replaceAll(/<[^<>]*>/g, '')
   } while (current !== prev)
 
   return current

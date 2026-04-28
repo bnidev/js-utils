@@ -60,7 +60,7 @@ export function getFocusableElements(
  * @returns {boolean} `true` if the element is focusable, `false` otherwise.
  */
 function isFocusable(el: HTMLElement): boolean {
-  const style = window.getComputedStyle(el)
+  const style = globalThis.getComputedStyle(el)
 
   return (
     !el.hasAttribute('disabled') &&

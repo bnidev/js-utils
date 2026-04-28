@@ -78,8 +78,8 @@ export function onWindowResize(callback: () => void, delay = 50) {
     clearTimeout(timeout)
     timeout = setTimeout(callback, delay)
   }
-  window.addEventListener('resize', handler)
-  return () => window.removeEventListener('resize', handler)
+  globalThis.addEventListener('resize', handler)
+  return () => globalThis.removeEventListener('resize', handler)
 }
 
 /**
