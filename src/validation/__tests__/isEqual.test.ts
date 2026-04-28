@@ -8,7 +8,7 @@ describe('isEqual', () => {
     expect(isEqual(null, null)).toBe(true)
     expect(isEqual(undefined, undefined)).toBe(true)
     expect(isEqual(true, true)).toBe(true)
-    expect(isEqual(NaN, NaN)).toBe(true)
+    expect(isEqual(Number.NaN, Number.NaN)).toBe(true)
     expect(isEqual(0, -0)).toBe(false) // Object.is behavior
   })
 

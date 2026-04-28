@@ -44,8 +44,9 @@ describe('sanitizeUrl', () => {
     const OriginalURL = globalThis.URL
 
     globalThis.URL = class {
+      // NOSONAR
       constructor() {
-        throw 'some string error'
+        throw 'some string error' // NOSONAR
       }
     } as unknown as typeof URL
 

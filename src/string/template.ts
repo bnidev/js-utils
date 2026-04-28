@@ -27,5 +27,5 @@ export function template(
   template: string,
   values: Record<string, string>
 ): string {
-  return template.replace(/\{\{(\w+)\}\}/g, (_, key) => values[key] ?? '')
+  return template.replaceAll(/\{\{(\w+)\}\}/g, (_, key) => values[key] ?? '')
 }

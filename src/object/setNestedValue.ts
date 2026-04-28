@@ -50,7 +50,7 @@ export function setNestedValue<T extends object>(
     current = current[key] as Record<string, unknown>
   }
 
-  const lastKey = keys[keys.length - 1]
+  const lastKey = keys.at(-1)
   if (lastKey) {
     current[lastKey] = value
   }

@@ -21,7 +21,7 @@ describe('isElementInViewport', () => {
 
     expect(isElementInViewport(el)).toBe(true)
 
-    document.body.removeChild(el)
+    el.remove()
   })
 
   it('returns false for an element outside the viewport', () => {
@@ -43,7 +43,7 @@ describe('isElementInViewport', () => {
 
     expect(isElementInViewport(el)).toBe(false)
 
-    document.body.removeChild(el)
+    el.remove()
   })
 
   it('uses document.documentElement.clientHeight and clientWidth when window dimensions are missing', () => {
@@ -51,15 +51,15 @@ describe('isElementInViewport', () => {
     document.body.appendChild(el)
 
     // Mock fallback dimensions
-    const originalInnerHeight = window.innerHeight
-    const originalInnerWidth = window.innerWidth
+    const originalInnerHeight = globalThis.innerHeight
+    const originalInnerWidth = globalThis.innerWidth
 
     // Force fallback to be used
-    Object.defineProperty(window, 'innerHeight', {
+    Object.defineProperty(globalThis, 'innerHeight', {
       value: undefined,
       configurable: true
     })
-    Object.defineProperty(window, 'innerWidth', {
+    Object.defineProperty(globalThis, 'innerWidth', {
       value: undefined,
       configurable: true
     })
@@ -89,16 +89,16 @@ describe('isElementInViewport', () => {
     expect(isElementInViewport(el)).toBe(true)
 
     // Restore original properties
-    Object.defineProperty(window, 'innerHeight', {
+    Object.defineProperty(globalThis, 'innerHeight', {
       value: originalInnerHeight,
       configurable: true
     })
-    Object.defineProperty(window, 'innerWidth', {
+    Object.defineProperty(globalThis, 'innerWidth', {
       value: originalInnerWidth,
       configurable: true
     })
 
-    document.body.removeChild(el)
+    el.remove()
   })
 
   it('returns false if the element is null', () => {
@@ -124,7 +124,7 @@ describe('isElementInViewport', () => {
 
     expect(isElementInViewport('#visible-element')).toBe(true)
 
-    document.body.removeChild(el)
+    el.remove()
   })
 
   it('returns false when given a selector that matches no element', () => {
