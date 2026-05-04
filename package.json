@@ -52,7 +52,7 @@
   },
   "packageManager": "pnpm@10.12.1",
   "devDependencies": {
-    "@biomejs/biome": "2.4.13",
+    "@biomejs/biome": "2.4.14",
     "@changesets/cli": "^2.31.0",
     "@vitest/coverage-v8": "^4.1.0",
     "changeset-formatter": "^0.0.1",
