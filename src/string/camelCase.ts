@@ -25,6 +25,6 @@
  */
 export function camelCase(str: string): string {
   return str
-    .replace(/[-_\s]+(.)?/g, (_, char) => (char ? char.toUpperCase() : ''))
-    .replace(/^(.)/, (char) => char.toLowerCase())
+    .replaceAll(/[-_\s]+(.)?/g, (_, char) => (char ? char.toUpperCase() : ''))
+    .replaceAll(/^(.)/g, (char) => char.toLowerCase())
 }

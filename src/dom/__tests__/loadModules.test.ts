@@ -12,7 +12,7 @@ describe('loadModules', () => {
 
   afterEach(() => {
     // Clean up DOM
-    document.body.removeChild(container)
+    container.remove()
     vi.resetAllMocks()
   })
 
@@ -259,7 +259,7 @@ describe('loadModules', () => {
   })
 
   it('supports async module default export', async () => {
-    const asyncFn = vi.fn(async () => Promise.resolve())
+    const asyncFn = vi.fn(async () => {})
     const mockImporter = vi.fn(() => Promise.resolve({ default: asyncFn }))
 
     container.innerHTML = `<div data-loadmodule="asyncMod"></div>`

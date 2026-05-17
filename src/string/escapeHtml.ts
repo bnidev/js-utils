@@ -23,7 +23,7 @@
  * ```
  */
 export function escapeHtml(html: string): string {
-  return html.replace(/[&<>"']/g, (char) => {
+  return html.replaceAll(/[&<>"']/g, (char) => {
     switch (char) {
       case '&':
         return '&amp;'

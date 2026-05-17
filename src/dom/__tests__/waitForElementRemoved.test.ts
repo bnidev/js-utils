@@ -21,7 +21,7 @@ describe('waitForElementRemoved', () => {
 
     await expect(promise).resolves.toBeUndefined()
 
-    document.body.removeChild(container)
+    container.remove()
   })
 
   it('resolves immediately if element does not exist (selector)', async () => {
@@ -46,6 +46,6 @@ describe('waitForElementRemoved', () => {
       'Timeout waiting for element to be removed'
     )
 
-    document.body.removeChild(container)
+    container.remove()
   })
 })

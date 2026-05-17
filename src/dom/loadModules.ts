@@ -104,6 +104,39 @@ export type LoadModulesOptions = {
  * })
  * ```
  */
+async function tryImportModule(
+  importer: (path: string) => Promise<{ default: ModuleInitFn }>,
+  dir: string,
+  moduleName: string,
+  el: HTMLElement
+): Promise<boolean> {
+  for (const ext of ['.ts', '.js'] as const) {
+    try {
+      const mod = await importer(`${dir}/${moduleName}${ext}`)
+      await mod.default(el)
+      return true
+    } catch {
+      // try next extension
+    }
+  }
+  return false
+}
+
+async function loadSingleModule(
+  moduleName: string,
+  moduleDirs: string[],
+  el: HTMLElement,
+  importer: (path: string) => Promise<{ default: ModuleInitFn }>
+): Promise<void> {
+  for (const dir of moduleDirs) {
+    if (await tryImportModule(importer, dir, moduleName, el)) return
+  }
+  console.warn(
+    `[loadModules] Failed to load module "${moduleName}" from:`,
+    moduleDirs
+  )
+}
+
 export async function loadModules(
   userOptions: LoadModulesOptions
 ): Promise<void> {
@@ -117,47 +150,20 @@ export async function loadModules(
 
   const { attribute, moduleDirs, rootElement, loadedAttrSuffix, importer } =
     options
-  const selector = `[${attribute}]`
-  const elements = rootElement.querySelectorAll<HTMLElement>(selector)
+  const elements = rootElement.querySelectorAll<HTMLElement>(`[${attribute}]`)
+  const baseAttr = attribute.replace(/^data-/, '')
+  const hasLoadedAttr = baseAttr + loadedAttrSuffix
 
   for (const el of elements) {
     const rawModules = el.getAttribute(attribute)
     if (!rawModules) continue
 
-    const baseAttr = attribute.replace(/^data-/, '')
-    const suffixCamel = loadedAttrSuffix ?? 'HasLoaded'
-    const hasLoadedAttr = baseAttr + suffixCamel
     const dataset = el.dataset as Record<string, string | undefined>
-
     if (dataset[hasLoadedAttr]) continue
 
     const modules = rawModules.split(',').map((m) => m.trim())
-
     for (const moduleName of modules) {
-      let loaded = false
-
-      for (const dir of moduleDirs) {
-        const tryImport = async (ext: '.ts' | '.js') => {
-          try {
-            const module = await importer(`${dir}/${moduleName}${ext}`)
-            await module.default(el)
-            loaded = true
-            return true
-          } catch {
-            return false
-          }
-        }
-
-        if (await tryImport('.ts')) break
-        if (await tryImport('.js')) break
-      }
-
-      if (!loaded) {
-        console.warn(
-          `[loadModules] Failed to load module "${moduleName}" from:`,
-          moduleDirs
-        )
-      }
+      await loadSingleModule(moduleName, moduleDirs, el, importer)
     }
 
     dataset[hasLoadedAttr] = 'true'

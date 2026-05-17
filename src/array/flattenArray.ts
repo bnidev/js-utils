@@ -29,7 +29,7 @@ export function flattenArray<T>(arr: (T | T[])[]): T[] {
     if (Array.isArray(val)) {
       acc.push(...flattenArray(val as (T | T[])[]))
     } else {
-      acc.push(val as T)
+      acc.push(val)
     }
     return acc
   }, [])

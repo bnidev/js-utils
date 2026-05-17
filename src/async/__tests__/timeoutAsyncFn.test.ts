@@ -28,8 +28,8 @@ describe('timeoutAsyncFn', () => {
     let timeoutCleared = false
 
     // Mock clearTimeout to detect if called
-    const originalClearTimeout = global.clearTimeout
-    global.clearTimeout = (timer: Parameters<typeof clearTimeout>[0]) => {
+    const originalClearTimeout = globalThis.clearTimeout
+    globalThis.clearTimeout = (timer: Parameters<typeof clearTimeout>[0]) => {
       timeoutCleared = true
       return originalClearTimeout(timer)
     }
@@ -40,6 +40,6 @@ describe('timeoutAsyncFn', () => {
     expect(timeoutCleared).toBe(true)
 
     // Restore original clearTimeout
-    global.clearTimeout = originalClearTimeout
+    globalThis.clearTimeout = originalClearTimeout
   })
 })

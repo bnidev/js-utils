@@ -55,8 +55,8 @@ export function getNestedValue<T, R = unknown>(
   obj: T,
   path: string,
   fallback?: R
-): R | unknown {
-  if (!path) return obj
+): R | undefined {
+  if (!path) return obj as unknown as R | undefined
 
   const result = path.split('.').reduce((acc: unknown, key: string) => {
     if (acc && typeof acc === 'object') {
@@ -65,5 +65,7 @@ export function getNestedValue<T, R = unknown>(
     return undefined
   }, obj)
 
-  return result === undefined || result === null ? fallback : result
+  return (result === undefined || result === null ? fallback : result) as
+    | R
+    | undefined
 }

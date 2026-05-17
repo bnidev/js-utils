@@ -53,7 +53,7 @@ describe('sanitizeJson', () => {
     // mock JSON.parse to throw a non-Error
     const originalParse = JSON.parse
     JSON.parse = () => {
-      throw 'non-error string'
+      throw 'non-error string' // NOSONAR
     }
 
     const result = sanitizeJson('{"test": true}')

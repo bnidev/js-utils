@@ -30,7 +30,7 @@ describe('retryAsyncFn', () => {
   })
 
   it('waits between retries', async () => {
-    const sleepSpy = vi.spyOn(global, 'setTimeout')
+    const sleepSpy = vi.spyOn(globalThis, 'setTimeout')
     const fn = vi
       .fn()
       .mockRejectedValueOnce(new Error('fail'))

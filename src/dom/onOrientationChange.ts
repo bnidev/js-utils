@@ -27,7 +27,7 @@
 export function onOrientationChange(
   callback: (type: string, angle: number) => void
 ): { stop: () => void } | undefined {
-  if (!screen.orientation || !screen.orientation.addEventListener) {
+  if (!screen.orientation?.addEventListener) {
     console.warn('Screen Orientation API is not supported in this browser.')
     return
   }

@@ -25,7 +25,7 @@
 export function getCookie(name: string): string | null {
   if (typeof document === 'undefined') return null
 
-  const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`))
+  const match = new RegExp(`(^| )${name}=([^;]+)`).exec(document.cookie)
   if (!match) return null
 
   const value = match[2]

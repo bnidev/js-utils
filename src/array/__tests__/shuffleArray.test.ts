@@ -7,7 +7,9 @@ describe('shuffleArray', () => {
     const shuffled = shuffleArray(input)
 
     // Same elements, order may differ
-    expect(shuffled.sort()).toEqual(input.sort())
+    expect(shuffled.toSorted((a, b) => Number(a) - Number(b))).toEqual(
+      input.toSorted((a, b) => Number(a) - Number(b))
+    )
   })
 
   it('shuffles the array elements randomly over multiple runs', () => {
@@ -36,7 +38,13 @@ describe('shuffleArray', () => {
   it('works with strings and undefined values', () => {
     const input = ['a', undefined, 'b', undefined, 'c']
     const shuffled = shuffleArray(input)
-    expect(shuffled.sort()).toEqual(input.sort())
+    expect(
+      shuffled.toSorted((a, b) =>
+        String(a ?? '').localeCompare(String(b ?? ''))
+      )
+    ).toEqual(
+      input.toSorted((a, b) => String(a ?? '').localeCompare(String(b ?? '')))
+    )
   })
 
   it('returns empty array when input is empty', () => {

@@ -40,9 +40,9 @@ export class IntervalFn {
    * @param maxRuns - Optional. The maximum number of times to run the function before stopping automatically.
    */
   constructor(
-    private fn: () => void,
-    private ms: number,
-    private maxRuns?: number
+    private readonly fn: () => void,
+    private readonly ms: number,
+    private readonly maxRuns?: number
   ) {}
 
   /**

@@ -19,10 +19,10 @@ function createResizeObserverEntry(
 }
 
 class ResizeObserverMock {
-  private callback: ResizeObserverCallback
-  private elements = new Set<Element>()
+  private readonly callback: ResizeObserverCallback
+  private readonly elements = new Set<Element>()
 
-  static instances: ResizeObserverMock[] = []
+  static readonly instances: ResizeObserverMock[] = []
 
   constructor(callback: ResizeObserverCallback) {
     this.callback = callback
@@ -57,8 +57,8 @@ declare global {
 }
 
 beforeEach(() => {
-  global.ResizeObserver = ResizeObserverMock
-  ResizeObserverMock.instances = []
+  globalThis.ResizeObserver = ResizeObserverMock
+  ResizeObserverMock.instances.length = 0
 })
 
 afterEach(() => {
@@ -72,7 +72,7 @@ describe('onResize', () => {
     const callback = vi.fn()
     const cleanup = onResize(callback, { delay: 100 })
 
-    window.dispatchEvent(new Event('resize'))
+    globalThis.dispatchEvent(new Event('resize'))
     vi.advanceTimersByTime(99)
     expect(callback).not.toHaveBeenCalled()
 
@@ -82,7 +82,7 @@ describe('onResize', () => {
     cleanup()
     callback.mockClear()
 
-    window.dispatchEvent(new Event('resize'))
+    globalThis.dispatchEvent(new Event('resize'))
     vi.advanceTimersByTime(100)
     expect(callback).not.toHaveBeenCalled() // cleaned up
   })
@@ -124,8 +124,8 @@ describe('onWindowResize', () => {
     const callback = vi.fn()
     const cleanup = onWindowResize(callback, 100)
 
-    window.dispatchEvent(new Event('resize'))
-    window.dispatchEvent(new Event('resize'))
+    globalThis.dispatchEvent(new Event('resize'))
+    globalThis.dispatchEvent(new Event('resize'))
     vi.advanceTimersByTime(99)
     expect(callback).not.toHaveBeenCalled()
 
