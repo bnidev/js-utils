@@ -66,3 +66,17 @@ Each module has an `index.ts` barrel, one file per utility, and a `__tests__/` f
 - [Commit conventions](.agents/workflow/commit-conventions.md)
 - [Git hooks](.agents/workflow/git-hooks.md)
 - [Releases](.agents/workflow/release.md)
+
+## Agent skills
+
+### Issue tracker
+
+GitHub Issues via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Five canonical roles, each label string equal to its name. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` at the repo root plus `docs/adr/`. See `docs/agents/domain.md`.
