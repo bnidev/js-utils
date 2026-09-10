@@ -34,6 +34,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build documentation
+        # Uses the TS 6 swap workaround for typedoc (TS 7 not supported yet)
         run: pnpm run docs:build
 
       - name: Commit and push docs

@@ -16,7 +16,7 @@
   "scripts": {
     "prepare": "git config --local core.hooksPath .githooks || echo 'not in git'",
     "build": "tsdown src/index.ts --format cjs,esm --dts --out-dir dist",
-    "docs:build": "typedoc --help && echo 'Note: typedoc 0.28.x does not support TypeScript 7. Upgrade when typedoc 1.x stable is released.'",
+    "docs:build": "bash -c 'cp tsconfig.json tsconfig.json.ts7 && cp tsconfig.typedoc.json tsconfig.json && pnpm add -D typescript@6 && pnpm exec typedoc --plugin typedoc-github-theme && pnpm add -D typescript@7 && mv tsconfig.json tsconfig.typedoc.json && mv tsconfig.json.ts7 tsconfig.json'",
     "check": "biome check .",
     "check:fix": "biome check --write .",
     "test": "vitest",
