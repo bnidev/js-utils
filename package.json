@@ -62,8 +62,10 @@
   "devDependencies": {
     "@biomejs/biome": "^2.5.3",
     "@changesets/cli": "^2.31.0",
+    "@types/node": "^25.8.0",
     "@vitest/coverage-v8": "^4.1.0",
     "changeset-formatter": "^0.0.1",
+    "esbuild": "^0.28.2",
     "glob": "^13.0.0",
     "happy-dom": "^20.9.0",
     "tsdown": "^0.23.0",
