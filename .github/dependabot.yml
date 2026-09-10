@@ -22,3 +22,18 @@ updates:
       postcss:
         dependency-type: "direct"
         update-type: "all"
+      tsdown:
+        dependency-type: "direct"
+        update-type: "all"
+      esbuild:
+        dependency-type: "direct"
+        update-type: "all"
+      biome:
+        dependency-type: "direct"
+        update-type: "all"
+      changesets:
+        dependency-type: "direct"
+        update-type: "all"
+      typedoc:
+        dependency-type: "direct"
+        update-type: "all"
