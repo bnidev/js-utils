@@ -59,6 +59,9 @@
     "url": "https://github.com/bnidev/js-utils/issues"
   },
   "packageManager": "pnpm@10.12.1",
+  "engines": {
+    "node": ">=24.11.0"
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.5.3",
     "@changesets/cli": "^3.0.0",
