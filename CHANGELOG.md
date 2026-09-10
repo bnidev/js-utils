@@ -1,5 +1,11 @@
 # @bnidev/js-utils
 
+## 1.0.1 (2026-09-10)
+
+### 🛠️ Fixes
+
+- Re-export `getCookie`, `setCookie`, `getStorage`, and `setStorage` from the package root so they are importable, included in the build, and covered by generated docs (8b6e0a4)
+
 ## 1.0.0 (2026-09-10)
 
 ### 🚨 Breaking Changes
