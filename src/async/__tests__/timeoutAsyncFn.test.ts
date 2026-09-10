@@ -1,7 +1,27 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { timeoutAsyncFn } from '../timeoutAsyncFn'
 
 describe('timeoutAsyncFn', () => {
+  let originalClearTimeout: typeof globalThis.clearTimeout
+  let timeoutCleared: boolean
+
+  beforeEach(() => {
+    timeoutCleared = false
+    originalClearTimeout = globalThis.clearTimeout
+    vi.stubGlobal(
+      'clearTimeout',
+      (timer: Parameters<typeof clearTimeout>[0]) => {
+        timeoutCleared = true
+        return originalClearTimeout(timer)
+      }
+    )
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.restoreAllMocks()
+  })
+
   it('resolves if the original promise resolves before timeout', async () => {
     const promise = new Promise<string>((resolve) =>
       setTimeout(() => resolve('done'), 50)
@@ -25,21 +45,9 @@ describe('timeoutAsyncFn', () => {
   })
 
   it('clears the timeout when promise settles', async () => {
-    let timeoutCleared = false
-
-    // Mock clearTimeout to detect if called
-    const originalClearTimeout = globalThis.clearTimeout
-    globalThis.clearTimeout = (timer: Parameters<typeof clearTimeout>[0]) => {
-      timeoutCleared = true
-      return originalClearTimeout(timer)
-    }
-
     const promise = Promise.resolve('done')
     const result = await timeoutAsyncFn(promise, 100)
     expect(result).toBe('done')
     expect(timeoutCleared).toBe(true)
-
-    // Restore original clearTimeout
-    globalThis.clearTimeout = originalClearTimeout
   })
 })

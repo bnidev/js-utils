@@ -46,22 +46,13 @@ class ResizeObserverMock {
   }
 }
 
-// Properly extend global to include ResizeObserver for testing environment
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace NodeJS {
-    interface Global {
-      ResizeObserver: typeof ResizeObserverMock
-    }
-  }
-}
-
 beforeEach(() => {
-  globalThis.ResizeObserver = ResizeObserverMock
+  vi.stubGlobal('ResizeObserver', ResizeObserverMock)
   ResizeObserverMock.instances.length = 0
 })
 
 afterEach(() => {
+  vi.unstubAllGlobals()
   vi.restoreAllMocks()
   vi.useRealTimers()
 })

@@ -1,7 +1,12 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { sanitizeUrl } from '../sanitizeUrl'
 
 describe('sanitizeUrl', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.restoreAllMocks()
+  })
+
   it('returns success and normalized URL for valid http URL', () => {
     const result = sanitizeUrl('http://example.com')
     expect(result.success).toBe(true)
@@ -41,14 +46,15 @@ describe('sanitizeUrl', () => {
   })
 
   it('handles non-Error exceptions gracefully', () => {
-    const OriginalURL = globalThis.URL
-
-    globalThis.URL = class {
-      // NOSONAR
-      constructor() {
-        throw 'some string error' // NOSONAR
-      }
-    } as unknown as typeof URL
+    vi.stubGlobal(
+      'URL',
+      class {
+        // NOSONAR
+        constructor() {
+          throw 'some string error' // NOSONAR
+        }
+      } as unknown as typeof URL
+    )
 
     const result = sanitizeUrl('http://example.com')
 
@@ -56,7 +62,5 @@ describe('sanitizeUrl', () => {
     expect(result.value).toBeNull()
     expect(result.error).toBeInstanceOf(Error)
     expect(result.error?.message).toBe('Invalid URL')
-
-    globalThis.URL = OriginalURL
   })
 })
