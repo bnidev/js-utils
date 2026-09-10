@@ -1,5 +1,32 @@
 # @bnidev/js-utils
 
+## 1.0.0 (2026-09-10)
+
+### 🚨 Breaking Changes
+
+- Replace `toggleScrollLock` with `lockBodyScroll` and `unlockBodyScroll` (4899224)
+
+### ❓ Uncategorized
+
+- **BREAKING CHANGE:** `toggleScrollLock(boolean)` has been removed. Replace usages as follows: (4899224)
+- - `toggleScrollLock(true)` → `lockBodyScroll()` (4899224)
+- - `toggleScrollLock(false)` → `unlockBodyScroll()` (4899224)
+- Internal fixes with no behavioral changes: modern globals (`globalThis`, `Number.*`, (4899224)
+- `Math.hypot`, `replaceAll`, `RegExp.exec`), readonly modifiers, type improvements, (4899224)
+- Extracted constants, and reduced cognitive complexity in `loadModules` and `isEqual`. (4899224)
+
+### ✨ Features
+
+- Add `hexToRgb`, `rgbToHex`, `lighten`, and `darken` utilities (12287e2)
+- Add `formatDate`, `relativeTime`, and `isValidDate` utilities (69162f2)
+- Add `camelCase`, `kebabCase`, `snakeCase`, `slugify`, `template`, and `repeat` utilities (5811641)
+- Add `getCookie`, `setCookie`, `getStorage`, and `setStorage` utilities (eae8e02)
+- Add `merge`, `isEmpty`, `invert`, `defaults`, and `setNestedValue` utilities (c92843b)
+
+### 🛠️ Fixes
+
+- SonarQube static analysis compliance across src/ (4899224)
+
 ## 0.3.0 (2025-08-08)
 
 ### ✨ Features
