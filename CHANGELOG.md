@@ -4,16 +4,7 @@
 
 ### 🚨 Breaking Changes
 
-- Replace `toggleScrollLock` with `lockBodyScroll` and `unlockBodyScroll` (4899224)
-
-### ❓ Uncategorized
-
-- **BREAKING CHANGE:** `toggleScrollLock(boolean)` has been removed. Replace usages as follows: (4899224)
-- - `toggleScrollLock(true)` → `lockBodyScroll()` (4899224)
-- - `toggleScrollLock(false)` → `unlockBodyScroll()` (4899224)
-- Internal fixes with no behavioral changes: modern globals (`globalThis`, `Number.*`, (4899224)
-- `Math.hypot`, `replaceAll`, `RegExp.exec`), readonly modifiers, type improvements, (4899224)
-- Extracted constants, and reduced cognitive complexity in `loadModules` and `isEqual`. (4899224)
+- Replace `toggleScrollLock` with `lockBodyScroll` and `unlockBodyScroll`; migrate `toggleScrollLock(true)` → `lockBodyScroll()`, `toggleScrollLock(false)` → `unlockBodyScroll()` (4899224)
 
 ### ✨ Features
 
@@ -25,7 +16,7 @@
 
 ### 🛠️ Fixes
 
-- SonarQube static analysis compliance across src/ (4899224)
+- SonarQube static analysis compliance across src/ with no behavioral changes (4899224)
 
 ## 0.3.0 (2025-08-08)
 
