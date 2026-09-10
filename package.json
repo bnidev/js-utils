@@ -22,8 +22,7 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
-    "version": "changeset version",
-    "postversion": "changeset-formatter"
+    "release:version": "changeset version && changeset-formatter"
   },
   "files": [
     "dist",
