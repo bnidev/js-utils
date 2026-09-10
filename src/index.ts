@@ -22,6 +22,9 @@
  * @categoryDescription Sanitize
  * Utility functions for sanitizing and validating data, such as JSON, HTML, and URLs, to prevent security issues like XSS and injection attacks.
  *
+ * @categoryDescription Storage
+ * Utility functions for working with browser storage mechanisms, including cookies and web storage.
+ *
  * @categoryDescription String
  * Utility functions for string manipulation, including formatting, parsing, and validation.
  *
@@ -48,6 +51,8 @@ export * from './math'
 export * from './object'
 
 export * from './sanitize'
+
+export * from './storage'
 
 export * from './string'
 
