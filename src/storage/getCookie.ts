@@ -1,15 +1,14 @@
 /**
  * Gets a cookie value by name.
  *
- * ### Codec & Storage Comparison
+ * ### Cookie Storage Characteristics
  *
- * | Feature | `getStorage` / `setStorage` | `getCookie` / `setCookie` |
- * | :--- | :--- | :--- |
- * | **Scope** | Domain-wide origin persistence | Client-side cookie transport |
- * | **Capacity** | ~5MB (browser limit) | ~4KB per cookie |
- * | **Codec** | JSON-serialized (`JSON.parse` / `JSON.stringify`) | URL-encoded (`encodeURIComponent` / `decodeURIComponent`) |
- * | **Empty values** | Encoded as `"null"` or empty JSON | Empty string or missing cookie |
- * | **Failure modes** | Returns fallback on corrupt JSON or missing `localStorage` | Returns `null` on missing `document` or missing cookie |
+ * Cookies are lightweight, client-side browser storage structures transferred with HTTP requests.
+ * Under this library, they are URL-encoded (`encodeURIComponent`/`decodeURIComponent`), limited
+ * to ~4KB, and return `null` on failure.
+ *
+ * For a detailed comparison between standard `localStorage` and `cookie` transport options (including
+ * capacity, serialization codecs, and fallback modes), see the comparison table in `getStorage`.
  *
  * @param name - The name of the cookie.
  *
