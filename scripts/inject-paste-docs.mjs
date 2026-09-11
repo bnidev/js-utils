@@ -30,21 +30,30 @@ const DARK_THEME = 'dark-plus'
 
 // Invert highlight.css into color-pair -> hl-N, mirroring TypeDoc's global
 // class assignment (its getClass keys on "lightColor | darkColor").
+// Plain line parsing keeps this linear; marked lines from previous runs
+// are included so indices stay stable.
+function cssVars(css, mode) {
+  const vars = {}
+  const prefix = `--${mode}-hl-`
+  for (const line of css.split('\n')) {
+    const trimmed = line.trim()
+    if (!trimmed.startsWith(prefix)) continue
+    const rest = trimmed.slice(prefix.length)
+    const colon = rest.indexOf(':')
+    if (colon === -1) continue
+    const afterColon = rest.slice(colon + 1)
+    const semi = afterColon.indexOf(';')
+    const value = (semi === -1 ? afterColon : afterColon.slice(0, semi)).trim()
+    if (value) vars[rest.slice(0, colon)] = value
+  }
+  return vars
+}
+
 function cssPairIndex(docsDir) {
   try {
     const css = readFileSync(join(docsDir, 'assets', 'highlight.css'), 'utf8')
-    const light = Object.fromEntries(
-      [...css.matchAll(/--light-hl-(\d+):\s*([^;]+);/g)].map((m) => [
-        m[1],
-        m[2].trim()
-      ])
-    )
-    const dark = Object.fromEntries(
-      [...css.matchAll(/--dark-hl-(\d+):\s*([^;]+);/g)].map((m) => [
-        m[1],
-        m[2].trim()
-      ])
-    )
+    const light = cssVars(css, 'light')
+    const dark = cssVars(css, 'dark')
     const map = new Map()
     for (const [index, color] of Object.entries(light)) {
       if (dark[index]) {
@@ -115,8 +124,44 @@ function pairKey(token) {
   return `${token.variants.light.color.toUpperCase()} | ${token.variants.dark.color.toUpperCase()}`
 }
 
-// Deterministic: unseen pairs sorted alphabetically, so indices are stable
-// across runs (bundles are deterministic esbuild output).
+// Deterministic: unseen pairs sorted with an explicit comparator, so
+// indices are stable across runs (bundles are deterministic output).
+function compareStrings(a, b) {
+  if (a === b) return 0
+  return a < b ? -1 : 1
+}
+
+const THEME_VAR = /^ {4}--hl-\d+: var\(--(?:light|dark)-hl-\d+\);$/
+const COLOR_VAR = /^ {4}--(?:light|dark)-hl-\d+: [^;]+;$/
+const HL_RULE = /^\.hl-\d+ \{ color: var\(--hl-\d+\); \}$/
+
+function runEndKind(line, nextLine) {
+  if (THEME_VAR.test(line) && !THEME_VAR.test(nextLine)) return 'theme'
+  if (COLOR_VAR.test(line) && !COLOR_VAR.test(nextLine)) return 'color'
+  if (HL_RULE.test(line) && !HL_RULE.test(nextLine)) return 'rule'
+  return null
+}
+
+function appendClassLines(out, added, pairIndex, kind, anchor) {
+  const themeMode =
+    kind === 'theme' && anchor.includes('light-hl') ? 'light' : 'dark'
+  for (const key of added) {
+    const cls = pairIndex.get(key)
+    if (kind === 'rule') {
+      out.push(`.${cls} { color: var(--${cls}); } ${HL_MARK}`)
+    } else if (kind === 'color') {
+      // :root interleaves light/dark definitions in one run, so emit both.
+      const [lightColor, darkColor] = key.split(' | ')
+      out.push(
+        `    --light-${cls}: ${lightColor}; ${HL_MARK}`,
+        `    --dark-${cls}: ${darkColor}; ${HL_MARK}`
+      )
+    } else {
+      out.push(`    --${cls}: var(--${themeMode}-${cls}); ${HL_MARK}`)
+    }
+  }
+}
+
 function extendPairIndex(pairIndex, allTokens) {
   const baseMax = Math.max(
     ...[...pairIndex.values()].map((cls) => Number(cls.slice(3)))
@@ -131,11 +176,12 @@ function extendPairIndex(pairIndex, allTokens) {
     }
   }
   let next = baseMax + 1
-  for (const key of [...unseen].sort()) {
+  const sorted = [...unseen].sort(compareStrings)
+  for (const key of sorted) {
     pairIndex.set(key, `hl-${next}`)
     next++
   }
-  return [...unseen].sort()
+  return sorted
 }
 
 // Append our classes to highlight.css in getStyles shape. Old marked lines
@@ -147,40 +193,10 @@ function extendHighlightCss(docsDir, pairIndex, added) {
     .split('\n')
     .filter((line) => !line.includes(HL_MARK))
   const out = []
-  const themeVar = /^ {4}--hl-\d+: var\(--(?:light|dark)-hl-\d+\);$/
-  const colorVar = /^ {4}--(?:light|dark)-hl-\d+: [^;]+;$/
-  const hlRule = /^\.hl-\d+ \{ color: var\(--hl-\d+\); \}$/
   for (let i = 0; i < fresh.length; i++) {
     out.push(fresh[i])
-    const isTheme = themeVar.test(fresh[i])
-    const isColor = colorVar.test(fresh[i])
-    const isRule = hlRule.test(fresh[i])
-    const nextLine = fresh[i + 1] ?? ''
-    const runEnds =
-      (isTheme && !themeVar.test(nextLine)) ||
-      (isColor && !colorVar.test(nextLine)) ||
-      (isRule && !hlRule.test(nextLine))
-    if (!runEnds) continue
-    if (isTheme) {
-      const mode = fresh[i].includes('light-hl') ? 'light' : 'dark'
-      for (const key of added) {
-        const cls = pairIndex.get(key)
-        out.push(`    --${cls}: var(--${mode}-${cls}); ${HL_MARK}`)
-      }
-    } else if (isColor) {
-      // :root interleaves light/dark definitions in one run, so emit both.
-      for (const key of added) {
-        const cls = pairIndex.get(key)
-        const [lightColor, darkColor] = key.split(' | ')
-        out.push(`    --light-${cls}: ${lightColor}; ${HL_MARK}`)
-        out.push(`    --dark-${cls}: ${darkColor}; ${HL_MARK}`)
-      }
-    } else if (isRule) {
-      for (const key of added) {
-        const cls = pairIndex.get(key)
-        out.push(`.${cls} { color: var(--${cls}); } ${HL_MARK}`)
-      }
-    }
+    const kind = runEndKind(fresh[i], fresh[i + 1] ?? '')
+    if (kind) appendClassLines(out, added, pairIndex, kind, fresh[i])
   }
   writeFileSync(file, out.join('\n'))
   const first = pairIndex.get(added[0])
@@ -232,6 +248,18 @@ function findPage(docsDir, name) {
   return null
 }
 
+// Anchor the block as the last element of the description. Exactly one
+// tsd-sources aside exists per page; <footer> is the fallback.
+function insertBlock(stripped, block) {
+  if (stripped.includes('</aside></div>')) {
+    return stripped.replace('</aside></div>', () => `</aside>${block}</div>`)
+  }
+  if (stripped.includes('<footer>')) {
+    return stripped.replace('<footer>', () => `${block}<footer>`)
+  }
+  return null
+}
+
 export async function injectPasteBlocks(docsDir, bundles) {
   const pairIndex = cssPairIndex(docsDir)
   const loaded = pairIndex ? await loadHighlighter() : null
@@ -254,20 +282,12 @@ export async function injectPasteBlocks(docsDir, bundles) {
       }
       const tier = tierFor(b.dir, name)
       const block = blockForBundle(tier)
-      const pattern = new RegExp(`${START}[\\s\\S]*?${END}`)
+      const pattern = new RegExp(String.raw`${START}[\s\S]*?${END}`)
       // Strip any previous block first (it may sit at the old <footer>
-      // anchor), then insert the new one as the last element of the
-      // description. Exactly one tsd-sources aside exists per page.
+      // anchor), then insert the new one.
       const stripped = readFileSync(page, 'utf8').replace(pattern, '')
-      let next
-      if (stripped.includes('</aside></div>')) {
-        next = stripped.replace(
-          '</aside></div>',
-          () => `</aside>${block}</div>`
-        )
-      } else if (stripped.includes('<footer>')) {
-        next = stripped.replace('<footer>', () => `${block}<footer>`)
-      } else {
+      const next = insertBlock(stripped, block)
+      if (!next) {
         missing.push(`${name} (no description or footer anchor)`)
         continue
       }
@@ -312,8 +332,10 @@ if (
   process.argv[1] &&
   import.meta.url === pathToFileURL(process.argv[1]).href
 ) {
-  main().catch((error) => {
+  try {
+    await main()
+  } catch (error) {
     console.error(error)
     process.exitCode = 1
-  })
+  }
 }

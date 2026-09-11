@@ -58,12 +58,13 @@ function wiredFiles() {
   return files
 }
 
+const EXPORT_PATTERN =
+  /export\s+(?:async\s+)?(?:function|const|let|var|interface|type|class|enum)\s+([A-Za-z_$][\w$]*)/g
+
 function exportedNames(source) {
   const names = []
-  for (const m of source.matchAll(
-    /export\s+(?:async\s+)?function\s+([A-Za-z_$][\w$]*)|export\s+(?:const|let|var)\s+([A-Za-z_$][\w$]*)|export\s+(?:interface|type|class|enum)\s+([A-Za-z_$][\w$]*)/g
-  )) {
-    names.push(m[1] ?? m[2] ?? m[3])
+  for (const m of source.matchAll(EXPORT_PATTERN)) {
+    names.push(m[1])
   }
   return [...new Set(names)]
 }
