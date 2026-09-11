@@ -1,3 +1,8 @@
+import {
+  DEFAULT_ALLOWED_PROTOCOLS,
+  isAllowedProtocol
+} from '../internal/protocols'
+
 /**
  * Sanitizes a URL string by validating its syntax and protocol.
  *
@@ -8,7 +13,7 @@
  * @param input - The input string to sanitize as a URL.
  * @param options - Optional settings to customize behavior.
  * @param options.allowedProtocols - Array of allowed URL protocols (including colon).
- *   Defaults to ['http:', 'https:', 'ftp:'].
+ *   Defaults to `DEFAULT_ALLOWED_PROTOCOLS` (`['http:', 'https:', 'ftp:']`).
  * @param options.normalize - If true (default), returns a normalized URL string.
  *   If false, returns the original input string when valid.
  *
@@ -47,13 +52,15 @@ export function sanitizeUrl(
     normalize?: boolean
   } = {}
 ): { success: boolean; value: string | null; error?: Error } {
-  const { allowedProtocols = ['http:', 'https:', 'ftp:'], normalize = true } =
-    options
+  const {
+    allowedProtocols = [...DEFAULT_ALLOWED_PROTOCOLS],
+    normalize = true
+  } = options
 
   try {
     const url = new URL(input)
 
-    if (!allowedProtocols.includes(url.protocol)) {
+    if (!isAllowedProtocol(url.protocol, allowedProtocols)) {
       return {
         success: false,
         value: null,
