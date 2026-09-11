@@ -16,6 +16,43 @@
 <div class="tsd-signature tsd-anchor-link" id="getstorage"><span class="tsd-kind-call-signature">getStorage</span><span class="tsd-signature-symbol">&lt;</span><a class="tsd-signature-type tsd-kind-type-parameter" href="#getstoraget">T</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">key</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">defaultValue</span><span class="tsd-signature-symbol">?:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#getstoraget">T</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <a class="tsd-signature-type tsd-kind-type-parameter" href="#getstoraget">T</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><a href="#getstorage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Gets a value from localStorage and parses it as JSON.</p>
+<h3 id="codec-storage-comparison" class="tsd-anchor-link">Codec &amp; Storage Comparison<a href="#codec-storage-comparison" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Feature</th>
+<th style="text-align:left"><code>getStorage</code> / <code>setStorage</code></th>
+<th style="text-align:left"><code>getCookie</code> / <code>setCookie</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Scope</strong></td>
+<td style="text-align:left">Domain-wide origin persistence</td>
+<td style="text-align:left">Client-side cookie transport</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Capacity</strong></td>
+<td style="text-align:left">~5MB (browser limit)</td>
+<td style="text-align:left">~4KB per cookie</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Codec</strong></td>
+<td style="text-align:left">JSON-serialized (<code>JSON.parse</code> / <code>JSON.stringify</code>)</td>
+<td style="text-align:left">URL-encoded (<code>encodeURIComponent</code> / <code>decodeURIComponent</code>)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Empty values</strong></td>
+<td style="text-align:left">Encoded as <code>&quot;null&quot;</code> or empty JSON</td>
+<td style="text-align:left">Empty string or missing cookie</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Failure modes</strong></td>
+<td style="text-align:left">Returns fallback on corrupt JSON or missing <code>localStorage</code></td>
+<td style="text-align:left">Returns <code>null</code> on missing <code>document</code> or missing cookie</td>
+</tr>
+</tbody>
+</table>
 </div>
 <section class="tsd-panel">
 <h4>Type Parameters</h4>
@@ -44,7 +81,7 @@
 
 </div></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/bnidev/js-utils/blob/9d056e44557a0e9ac5ab1e1a8fea237f06b0a1e7/src/storage/getStorage.ts#L26">storage/getStorage.ts:26</a></li></ul></aside><!-- PASTE-BLOCK-START -->
+<li>Defined in <a href="https://github.com/bnidev/js-utils/blob/6698fc95e93c185867a690de7b64c44d02749fea/src/storage/getStorage.ts#L36">storage/getStorage.ts:36</a></li></ul></aside><!-- PASTE-BLOCK-START -->
 <div class="tsd-tag-example" style="margin-top:3rem">
 <h3 class="tsd-anchor-link" id="paste">Drop-in snippet<a href="#paste" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-comment tsd-typography"><p><strong>Paste with care — prefer install for this one.</strong> This function guards security or browser-state behavior (sanitization policy, URL protocol policy, cookie/storage codec, focus/scroll handling). A paste is a snapshot: it will not receive fixes when the policy updates, and stale copies can stay vulnerable. For production use, install instead — <code>pnpm add @bnidev/js-utils</code> — so updates reach you.</p></div>
@@ -57,7 +94,10 @@
 <details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
 <h3>Settings</h3></summary>
 <div class="tsd-accordion-details">
-<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#codec-storage-comparison"><span>Codec &amp; <wbr/>Storage <wbr/>Comparison</span></a></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../modules.html">@bnidev/js-utils</a>
 <ul class="tsd-small-nested-navigation" id="tsd-nav-container">

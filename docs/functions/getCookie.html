@@ -16,6 +16,12 @@
 <div class="tsd-signature tsd-anchor-link" id="getcookie"><span class="tsd-kind-call-signature">getCookie</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span><a href="#getcookie" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Gets a cookie value by name.</p>
+<h3 id="cookie-storage-characteristics" class="tsd-anchor-link">Cookie Storage Characteristics<a href="#cookie-storage-characteristics" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Cookies are lightweight, client-side browser storage structures transferred with HTTP requests.
+Under this library, they are URL-encoded (<code>encodeURIComponent</code>/<code>decodeURIComponent</code>), limited
+to ~4KB, and return <code>null</code> on failure.</p>
+<p>For a detailed comparison between standard <code>localStorage</code> and <code>cookie</code> transport options (including
+capacity, serialization codecs, and fallback modes), see the comparison table in <code>getStorage</code>.</p>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -37,7 +43,7 @@
 
 </div></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/bnidev/js-utils/blob/9d056e44557a0e9ac5ab1e1a8fea237f06b0a1e7/src/storage/getCookie.ts#L25">storage/getCookie.ts:25</a></li></ul></aside><!-- PASTE-BLOCK-START -->
+<li>Defined in <a href="https://github.com/bnidev/js-utils/blob/6698fc95e93c185867a690de7b64c44d02749fea/src/storage/getCookie.ts#L34">storage/getCookie.ts:34</a></li></ul></aside><!-- PASTE-BLOCK-START -->
 <div class="tsd-tag-example" style="margin-top:3rem">
 <h3 class="tsd-anchor-link" id="paste">Drop-in snippet<a href="#paste" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-comment tsd-typography"><p><strong>Paste with care — prefer install for this one.</strong> This function guards security or browser-state behavior (sanitization policy, URL protocol policy, cookie/storage codec, focus/scroll handling). A paste is a snapshot: it will not receive fixes when the policy updates, and stale copies can stay vulnerable. For production use, install instead — <code>pnpm add @bnidev/js-utils</code> — so updates reach you.</p></div>
@@ -50,7 +56,10 @@
 <details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
 <h3>Settings</h3></summary>
 <div class="tsd-accordion-details">
-<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#cookie-storage-characteristics"><span>Cookie <wbr/>Storage <wbr/>Characteristics</span></a></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../modules.html">@bnidev/js-utils</a>
 <ul class="tsd-small-nested-navigation" id="tsd-nav-container">
