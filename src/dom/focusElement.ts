@@ -1,3 +1,5 @@
+import { resolveElement } from '../internal/resolveElement'
+
 /**
  * Focuses the specified HTML element or the first element matching a CSS selector.
  *
@@ -61,16 +63,11 @@ export function focusElement(
   focused: boolean
   error?: unknown
 } {
-  let element: HTMLElement | null
+  const element = resolveElement(selectorOrElement)
   let attempted = false
   let focused = false
   let error: unknown
 
-  if (typeof selectorOrElement === 'string') {
-    element = document.querySelector<HTMLElement>(selectorOrElement)
-  } else {
-    element = selectorOrElement
-  }
   if (element) {
     attempted = true
     try {

@@ -30,9 +30,42 @@
  * ```
  */
 
+import { resolveElement } from '../internal/resolveElement'
+
+/**
+ * Toggles the 'inert' attribute on all sibling elements of the target element and its ancestors.
+ *
+ * For each ancestor of the target element (up to the document root), this function finds all sibling elements
+ * and toggles their 'inert' attribute. If a sibling has the 'inert' attribute, it is removed; otherwise, it is added.
+ *
+ * @param target - The target element, selector, or the ID of the target element around which to toggle 'inert' on siblings.
+ *
+ * @category DOM
+ *
+ * @example Imports
+ * ```ts
+ * // ES Module
+ * import { toggleInertAround } from '@bnidev/js-utils'
+ *
+ * // CommonJS
+ * const { toggleInertAround } = require('@bnidev/js-utils')
+ * ```
+ *
+ * @example Usage
+ * ```ts
+ * // Toggle 'inert' around an element by ID or CSS selector
+ * toggleInertAround('#myElementId')
+ *
+ * // Toggle 'inert' around a DOM element
+ * const el = document.getElementById('myElementId')
+ * if (el) {
+ *   toggleInertAround(el)
+ * }
+ * ```
+ */
+
 export function toggleInertAround(target: string | HTMLElement): void {
-  let element: HTMLElement | null =
-    typeof target === 'string' ? document.getElementById(target) : target
+  let element = resolveElement(target)
 
   while (element && element.parentNode !== document) {
     const parent = element.parentElement

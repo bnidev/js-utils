@@ -80,6 +80,32 @@ describe('toggleInertAround', () => {
     expect(level1b.hasAttribute('inert')).toBe(false)
   })
 
+  it('toggles inert attribute on siblings of the target and its ancestors (by CSS selector)', () => {
+    const sibling2a = document.getElementById('sibling2a')
+    const level2b = document.getElementById('level2b')
+    const level1b = document.getElementById('level1b')
+    if (!sibling2a || !level2b || !level1b) throw new Error('Test setup failed')
+
+    // Initial: no inert attributes
+    expect(sibling2a.hasAttribute('inert')).toBe(false)
+    expect(level2b.hasAttribute('inert')).toBe(false)
+    expect(level1b.hasAttribute('inert')).toBe(false)
+
+    toggleInertAround('#target')
+
+    // Siblings should now have inert
+    expect(sibling2a.hasAttribute('inert')).toBe(true)
+    expect(level2b.hasAttribute('inert')).toBe(true)
+    expect(level1b.hasAttribute('inert')).toBe(true)
+
+    // Toggle again to remove inert
+    toggleInertAround('#target')
+
+    expect(sibling2a.hasAttribute('inert')).toBe(false)
+    expect(level2b.hasAttribute('inert')).toBe(false)
+    expect(level1b.hasAttribute('inert')).toBe(false)
+  })
+
   it('does nothing if the target does not exist', () => {
     expect(() => toggleInertAround('non-existent')).not.toThrow()
   })
