@@ -2,6 +2,12 @@
  * Creates a debounced version of the provided function that delays its execution until after
  * a specified delay has elapsed since the last time it was invoked.
  *
+ * ### Cancellation & Cleanup Semantics
+ *
+ * Across timing and DOM registration utilities, this library enforces consistent cleanup patterns:
+ * - **Event Listeners / Observers**: Return a unified parameterless `() => void` cleanup/unsubscribe function (e.g. `onResize`).
+ * - **Schedules / Pollers**: Expose `cancel()` or `stop()` methods depending on class-based (`IntervalFn.stop()`) vs functional control.
+ *
  * @template T - The type of the function to debounce.
  * @param func - The function to debounce.
  * @param delay - The number of milliseconds to delay.

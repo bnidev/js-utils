@@ -1,6 +1,12 @@
 /**
  * A utility class to repeatedly execute a function at a fixed interval with start/stop control.
  *
+ * ### Cancellation & Cleanup Semantics
+ *
+ * Across timing and DOM registration utilities, this library enforces consistent cleanup patterns:
+ * - **Event Listeners / Observers**: Return a unified parameterless `() => void` cleanup/unsubscribe function (e.g. `onResize`).
+ * - **Schedules / Pollers**: Expose `cancel()` or `stop()` methods depending on class-based (`IntervalFn.stop()`) vs functional control.
+ *
  * @remarks
  * This class wraps the native `setInterval` and `clearInterval` APIs to provide an easy way
  * to start and stop repeated execution of a function. The interval can optionally run

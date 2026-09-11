@@ -2,6 +2,12 @@
  * Creates a throttled version of a function that ensures the original function
  * is invoked at most once every specified number of milliseconds.
  *
+ * ### Cancellation & Cleanup Semantics
+ *
+ * Across timing and DOM registration utilities, this library enforces consistent cleanup patterns:
+ * - **Event Listeners / Observers**: Return a unified parameterless `() => void` cleanup/unsubscribe function (e.g. `onResize`).
+ * - **Schedules / Pollers**: Expose `cancel()` or `stop()` methods depending on class-based (`IntervalFn.stop()`) vs functional control.
+ *
  * @remarks
  * This utility is useful for rate-limiting a function that might be called frequently,
  * such as an event handler or API call, to improve performance or avoid overloading a system.
