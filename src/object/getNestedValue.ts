@@ -1,3 +1,5 @@
+import { parsePath } from '../internal/parsePath'
+
 /**
  * Retrieves a nested value from an object using a dot-separated path.
  * If the value is undefined or null, it returns the provided fallback value.
@@ -56,9 +58,7 @@ export function getNestedValue<T, R = unknown>(
   path: string,
   fallback?: R
 ): R | undefined {
-  if (!path) return obj as unknown as R | undefined
-
-  const result = path.split('.').reduce((acc: unknown, key: string) => {
+  const result = parsePath(path).reduce((acc: unknown, key: string) => {
     if (acc && typeof acc === 'object') {
       return (acc as Record<string, unknown>)[key]
     }

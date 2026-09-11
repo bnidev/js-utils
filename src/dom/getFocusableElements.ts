@@ -1,3 +1,5 @@
+import { resolveElement } from '../internal/resolveElement'
+
 /**
  * Returns an array of focusable elements within a given container.
  * Focusable elements include links, buttons, textareas, inputs, selects,
@@ -36,13 +38,7 @@
 export function getFocusableElements(
   containerOrSelector: string | HTMLElement
 ): HTMLElement[] {
-  let container: HTMLElement | null
-
-  if (typeof containerOrSelector === 'string') {
-    container = document.querySelector<HTMLElement>(containerOrSelector)
-  } else {
-    container = containerOrSelector
-  }
+  const container = resolveElement(containerOrSelector)
 
   if (!container) return []
 

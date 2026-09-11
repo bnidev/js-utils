@@ -72,7 +72,7 @@ export function onResize(
  * }, 100)
  * ```
  */
-export function onWindowResize(callback: () => void, delay = 50) {
+export function onWindowResize(callback: () => void, delay = 50): () => void {
   let timeout: ReturnType<typeof setTimeout>
   const handler = () => {
     clearTimeout(timeout)
@@ -105,7 +105,7 @@ export function onWindowResize(callback: () => void, delay = 50) {
 export function onElementResize(
   element: HTMLElement,
   callback: (entry: ResizeObserverEntry) => void
-) {
+): () => void {
   const observer = new ResizeObserver((entries) => {
     for (const entry of entries) {
       callback(entry)

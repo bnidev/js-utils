@@ -2,6 +2,12 @@
  * Creates a throttled version of a function that ensures the original function
  * is invoked at most once every specified number of milliseconds.
  *
+ * ### Throttle Cancellation & Cleanup Semantics
+ *
+ * Rate-limiting utilities in this package are lightweight by design. If you need
+ * active lifecycle cleanup, use `() => void` handlers returned by event observers,
+ * or the dedicated start/stop methods on timing classes such as `IntervalFn`.
+ *
  * @remarks
  * This utility is useful for rate-limiting a function that might be called frequently,
  * such as an event handler or API call, to improve performance or avoid overloading a system.

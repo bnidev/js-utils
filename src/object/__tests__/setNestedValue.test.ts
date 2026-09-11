@@ -26,4 +26,13 @@ describe('setNestedValue', () => {
     expect(obj).toEqual({ a: { b: 1 } })
     expect(result).toEqual({ a: { b: 1, c: 2 } })
   })
+
+  it('handles empty segments in path', () => {
+    const base = { x: { y: 10 } }
+    expect(setNestedValue(base, 'x..z', 20)).toEqual({ x: { y: 10, z: 20 } })
+    expect(setNestedValue(base, '.x', 20)).toEqual({ x: 20 })
+    expect(setNestedValue(base, 'x.', 20)).toEqual({ x: 20 })
+    expect(setNestedValue(base, 'x...z', 20)).toEqual({ x: { y: 10, z: 20 } })
+    expect(setNestedValue(base, '', 20)).toEqual(base)
+  })
 })

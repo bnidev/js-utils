@@ -1,6 +1,12 @@
 /**
  * A utility class to repeatedly execute a function at a fixed interval with start/stop control.
  *
+ * ### Interval Cancellation & Lifecycle Control
+ *
+ * Class-based schedulers like `IntervalFn` expose manual control methods (`start` and `stop`)
+ * to manage recurring timers. This contrasts with functional wrappers and event observer
+ * registration functions which return a unified parameterless `() => void` cleanup callback.
+ *
  * @remarks
  * This class wraps the native `setInterval` and `clearInterval` APIs to provide an easy way
  * to start and stop repeated execution of a function. The interval can optionally run

@@ -58,4 +58,15 @@ describe('getNestedValue', () => {
     const result = getNestedValue(input, 'arr.0.name')
     expect(result).toBe('Item 0')
   })
+
+  it('handles empty segments in path', () => {
+    const dataObj = { first: { second: { third: 100 } } }
+    expect(getNestedValue(dataObj, 'first..second.third')).toBe(100)
+    expect(getNestedValue(dataObj, '.first.second.third')).toBe(100)
+    expect(getNestedValue(dataObj, 'first.second.third.', 'default-val')).toBe(
+      100
+    )
+    expect(getNestedValue(dataObj, 'first...second....third')).toBe(100)
+    expect(getNestedValue(dataObj, '', 'default-val')).toBe(dataObj)
+  })
 })

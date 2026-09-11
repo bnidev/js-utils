@@ -1,6 +1,15 @@
 /**
  * Gets a cookie value by name.
  *
+ * ### Cookie Storage Characteristics
+ *
+ * Cookies are lightweight, client-side browser storage structures transferred with HTTP requests.
+ * Under this library, they are URL-encoded (`encodeURIComponent`/`decodeURIComponent`), limited
+ * to ~4KB, and return `null` on failure.
+ *
+ * For a detailed comparison between standard `localStorage` and `cookie` transport options (including
+ * capacity, serialization codecs, and fallback modes), see the comparison table in `getStorage`.
+ *
  * @param name - The name of the cookie.
  *
  * @returns The cookie value, or `null` if not found.

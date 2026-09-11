@@ -1,3 +1,5 @@
+import { parsePath } from '../internal/parsePath'
+
 /**
  * Sets a value at a nested path in an object.
  *
@@ -32,13 +34,12 @@ export function setNestedValue<T extends object>(
   path: string,
   value: unknown
 ): T {
-  const keys = path.split('.')
+  const keys = parsePath(path)
+  if (keys.length === 0) return obj
   const result = { ...obj }
   let current: Record<string, unknown> = result as Record<string, unknown>
 
-  for (let i = 0; i < keys.length - 1; i++) {
-    const key = keys[i]
-    if (!key) continue
+  for (const key of keys.slice(0, -1)) {
     if (
       !(key in current) ||
       typeof current[key] !== 'object' ||
@@ -50,8 +51,8 @@ export function setNestedValue<T extends object>(
     current = current[key] as Record<string, unknown>
   }
 
-  const lastKey = keys.at(-1)
-  if (lastKey) {
+  const lastKey = keys[keys.length - 1]
+  if (lastKey !== undefined) {
     current[lastKey] = value
   }
   return result

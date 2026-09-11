@@ -2,6 +2,12 @@
  * Creates a debounced version of the provided function that delays its execution until after
  * a specified delay has elapsed since the last time it was invoked.
  *
+ * ### Debounce Cancellation & Cleanup Semantics
+ *
+ * This utility does not return a handle; to clean up or unsubscribe from general
+ * asynchronous operations or observers, use the standard `() => void` return functions
+ * (as seen in `onResize`). For class-based polling controls, use `IntervalFn.stop()`.
+ *
  * @template T - The type of the function to debounce.
  * @param func - The function to debounce.
  * @param delay - The number of milliseconds to delay.
