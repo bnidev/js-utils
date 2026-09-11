@@ -16,9 +16,10 @@
   "scripts": {
     "prepare": "git config --local core.hooksPath .githooks || echo 'not in git'",
     "build": "tsdown src/index.ts --format cjs,esm --dts --out-dir dist",
-    "docs:build": "bash -c 'cp tsconfig.json tsconfig.json.ts7 && cp tsconfig.typedoc.json tsconfig.json && pnpm add -D typescript@6 && pnpm exec typedoc --plugin typedoc-github-theme && pnpm add -D typescript@7 && mv tsconfig.json tsconfig.typedoc.json && mv tsconfig.json.ts7 tsconfig.json'",
-    "check": "biome check . && pnpm run check:exports",
+    "docs:build": "bash -c 'cp tsconfig.json tsconfig.json.ts7 && cp tsconfig.typedoc.json tsconfig.json && pnpm add -D typescript@6 && pnpm exec typedoc --plugin typedoc-github-theme && pnpm add -D typescript@7 && mv tsconfig.json tsconfig.typedoc.json && mv tsconfig.json.ts7 tsconfig.json && node scripts/inject-paste-docs.mjs'",
+    "check": "biome check . && pnpm run check:exports && pnpm run check:paste",
     "check:exports": "node scripts/check-exports.mjs",
+    "check:paste": "node scripts/build-paste.mjs --check",
     "check:fix": "biome check --write .",
     "test": "vitest",
     "test:watch": "vitest --watch",
