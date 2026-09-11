@@ -33,4 +33,21 @@ describe('getCookie', () => {
     })
     expect(getCookie('test')).toBe('hello world')
   })
+
+  it('should handle spaces and semicolons around cookie values correctly', () => {
+    Object.defineProperty(globalThis, 'document', {
+      value: { cookie: '  session=abc123  ;   user=alice  ' },
+      writable: true
+    })
+    expect(getCookie('session')).toBe('abc123  ')
+    expect(getCookie('user')).toBe('alice  ')
+  })
+
+  it('should return null for empty values', () => {
+    Object.defineProperty(globalThis, 'document', {
+      value: { cookie: 'empty=' },
+      writable: true
+    })
+    expect(getCookie('empty')).toBeNull()
+  })
 })
