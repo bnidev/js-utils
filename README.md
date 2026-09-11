@@ -34,6 +34,22 @@ pnpm add @bnidev/js-utils
 yarn add @bnidev/js-utils
 ```
 
+### No install: copy a single function
+
+Don't want another dependency for one or two functions? Every function page in the
+[documentation](https://bnidev.github.io/js-utils) has a **"Copy self-contained function"**
+block: the function's code with its internal dependencies already inlined, stamped with
+the version it was copied from. Paste it into your project and it works standalone.
+
+Two tiers apply:
+
+- **Paste-first** (arrays, strings, math, timing, plain object helpers): copying is the
+  intended lightweight use. Re-copy when you upgrade for bug fixes.
+- **Install-recommended** (sanitize, storage, URL/email validation, DOM):
+  these guard security or browser-state behavior, so stale copies can stay vulnerable.
+  The copy block says so explicitly — for production use, install the package so updates
+  reach you.
+
 ## 🛠 Usage
 
 ```ts

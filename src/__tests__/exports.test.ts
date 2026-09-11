@@ -15,6 +15,11 @@ describe('public API surface', () => {
       if (path.endsWith('/index.ts')) {
         continue
       }
+      // src/internal/ holds shared helpers with no barrel: internal seams,
+      // deliberately absent from the public surface.
+      if (path.includes('/internal/')) {
+        continue
+      }
       const loader = utilityModules[path] as () => Promise<
         Record<string, unknown>
       >

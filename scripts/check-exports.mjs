@@ -5,6 +5,10 @@ import { fileURLToPath } from 'node:url'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', 'src')
 const errors = []
 
+// Convention: directories without an index.ts barrel (currently only
+// src/internal/) hold shared helpers behind internal seams. They are
+// skipped by every check below and never reach the public surface.
+
 const readBarrelTargets = (file) => {
   const content = readFileSync(file, 'utf8')
   return [

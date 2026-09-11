@@ -1,3 +1,5 @@
+import { isAllowedProtocol } from '../internal/protocols'
+
 /**
  * Checks if a string is a valid URL.
  *
@@ -29,7 +31,7 @@ export function isUrl(url: string): boolean {
     const parsed = new URL(url)
 
     // Protocol must be one of these
-    if (!['http:', 'https:', 'ftp:'].includes(parsed.protocol)) return false
+    if (!isAllowedProtocol(parsed.protocol)) return false
 
     // Hostname must not be empty
     if (!parsed.hostname) return false
