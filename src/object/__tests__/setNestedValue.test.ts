@@ -28,16 +28,11 @@ describe('setNestedValue', () => {
   })
 
   it('handles empty segments in path', () => {
-    const obj = { a: { b: 1 } }
-    // Skip empty segments: 'a..c' should be treated as ['a', 'c']
-    expect(setNestedValue(obj, 'a..c', 2)).toEqual({ a: { b: 1, c: 2 } })
-    // Leading dot
-    expect(setNestedValue(obj, '.a', 2)).toEqual({ a: 2 })
-    // Trailing dot
-    expect(setNestedValue(obj, 'a.', 2)).toEqual({ a: 2 })
-    // Multiple consecutive
-    expect(setNestedValue(obj, 'a...c', 2)).toEqual({ a: { b: 1, c: 2 } })
-    // Empty path
-    expect(setNestedValue(obj, '', 2)).toEqual(obj)
+    const base = { x: { y: 10 } }
+    expect(setNestedValue(base, 'x..z', 20)).toEqual({ x: { y: 10, z: 20 } })
+    expect(setNestedValue(base, '.x', 20)).toEqual({ x: 20 })
+    expect(setNestedValue(base, 'x.', 20)).toEqual({ x: 20 })
+    expect(setNestedValue(base, 'x...z', 20)).toEqual({ x: { y: 10, z: 20 } })
+    expect(setNestedValue(base, '', 20)).toEqual(base)
   })
 })

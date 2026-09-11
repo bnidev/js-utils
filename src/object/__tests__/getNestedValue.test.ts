@@ -60,16 +60,13 @@ describe('getNestedValue', () => {
   })
 
   it('handles empty segments in path', () => {
-    const input = { a: { b: { c: 1 } } }
-    // Skip empty segments: 'a..b.c' should be treated as ['a', 'b', 'c']
-    expect(getNestedValue(input, 'a..b.c')).toBe(1)
-    // Leading dot
-    expect(getNestedValue(input, '.a.b.c')).toBe(1)
-    // Trailing dot
-    expect(getNestedValue(input, 'a.b.c.', 'fallback')).toBe(1)
-    // Multiple consecutive
-    expect(getNestedValue(input, 'a...b....c')).toBe(1)
-    // Empty path
-    expect(getNestedValue(input, '', 'fallback')).toBe(input)
+    const dataObj = { first: { second: { third: 100 } } }
+    expect(getNestedValue(dataObj, 'first..second.third')).toBe(100)
+    expect(getNestedValue(dataObj, '.first.second.third')).toBe(100)
+    expect(getNestedValue(dataObj, 'first.second.third.', 'default-val')).toBe(
+      100
+    )
+    expect(getNestedValue(dataObj, 'first...second....third')).toBe(100)
+    expect(getNestedValue(dataObj, '', 'default-val')).toBe(dataObj)
   })
 })
