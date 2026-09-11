@@ -24,10 +24,11 @@ export function resolveElement<T extends Element = HTMLElement>(
   selectorOrElement: string | T
 ): T | null {
   if (typeof selectorOrElement === 'string') {
+    if (typeof document === 'undefined') return null
     try {
       const resolved = document.querySelector<T>(selectorOrElement)
       if (resolved) return resolved
-    } catch {
+    } catch (_error) {
       // Ignore querySelector syntax errors (e.g. invalid CSS selector strings)
     }
     return document.getElementById(selectorOrElement) as T | null
