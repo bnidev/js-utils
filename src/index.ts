@@ -31,6 +31,9 @@
  * @categoryDescription Timing
  * Utility functions for managing timing-related tasks, such as throttling, debouncing, and timeouts.
  *
+ * @categoryDescription Types
+ * Utility functions for runtime type checking and narrowing, including primitives, plain objects, functions, and nil values.
+ *
  * @categoryDescription Validation
  * Utility functions for validating data types, formats, and structures, including checks for equality, URLs, and more.
  *
@@ -57,5 +60,7 @@ export * from './storage'
 export * from './string'
 
 export * from './timing'
+
+export * from './types'
 
 export * from './validation'
