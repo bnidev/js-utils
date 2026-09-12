@@ -28,7 +28,7 @@ export function hexToRgb(hex: string): RGB | null { /* ... */ }
 
 ## Required tags
 
-- **`@category`** — groups functions in the TypeDoc sidebar. Use the module name: `array`, `async`, `color`, `datetime`, `dom`, `math`, `object`, `sanitize`, `storage`, `string`, `timing`, `validation`.
+- **`@category`** — groups functions in the TypeDoc sidebar. Use the module name: `array`, `async`, `color`, `datetime`, `dom`, `math`, `object`, `sanitize`, `storage`, `string`, `timing`, `url`, `validation`.
 - **`@param`** — one per parameter, with a short description.
 - **`@returns`** — describe the return value, including error/null cases.
 - **`@example`** — include **both ESM and CommonJS** import examples. This shows consumers that both module systems work.
