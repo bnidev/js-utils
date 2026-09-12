@@ -41,5 +41,6 @@ export function randomInt(min: number, max: number): number {
   if (lower > upper) {
     throw new Error('Range contains no integer')
   }
-  return Math.floor(Math.random() * (upper - lower + 1)) + lower
+  // Intentional: non-security randomness (jitter, sampling, games).
+  return Math.floor(Math.random() * (upper - lower + 1)) + lower // NOSONAR
 }
