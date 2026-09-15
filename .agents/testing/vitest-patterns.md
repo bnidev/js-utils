@@ -2,7 +2,7 @@
 
 ## Setup
 
-- **Globals enabled** — `describe`, `it`, `expect`, `vi`, `beforeEach` are available without imports
+- **Globals disabled** — every test file must import what it uses: `import { describe, expect, it } from 'vitest'` (add `vi`, `beforeEach`, etc. as needed). Explicit imports give IDE autocomplete, hover docs, and go-to-definition at zero runtime cost.
 - **Environment: `happy-dom`** — DOM APIs are available in tests (no need for `jsdom`)
 - Test files live in `__tests__/` folders colocated with the source they test
 
@@ -43,5 +43,5 @@ pnpm vitest run -t "test name"  # single test by name
 
 - **Test both success and failure cases** — every throw should have a corresponding `expect(...).toThrow()`
 - **Use `beforeEach` to reset state**, never `beforeAll` for mutable state
-- **Globals are available** — no need to `import { describe, it, expect } from 'vitest'`
+- **Always import vitest APIs explicitly** — `globals` is `false`, so un-imported `describe`/`expect`/`vi` will fail
 - **Import source functions directly** — not from barrel files

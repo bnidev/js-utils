@@ -2,7 +2,7 @@
 
 ## Files
 
-- **kebab-case** for all source and test files: `hex-to-rgb.ts`, `chunk-array.test.ts`
+- **camelCase** for all source and test files, matching the exported function name: `hexToRgb.ts`, `chunkArray.test.ts`
 - Test files live in `__tests__/` next to the code they test, with the `.test.ts` suffix
 - One file per utility; a module is a directory with an `index.ts` barrel
 
