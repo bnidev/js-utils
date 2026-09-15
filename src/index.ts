@@ -34,6 +34,9 @@
  * @categoryDescription Types
  * Utility functions for runtime type checking and narrowing, including primitives, plain objects, functions, and nil values.
  *
+ * @categoryDescription Url
+ * Utility functions for working with URLs and query strings, including reading, updating, parsing, and stringifying parameters.
+ *
  * @categoryDescription Validation
  * Utility functions for validating data types, formats, and structures, including checks for equality, URLs, and more.
  *
@@ -62,5 +65,7 @@ export * from './string'
 export * from './timing'
 
 export * from './types'
+
+export * from './url'
 
 export * from './validation'
