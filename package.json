@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.13",
-    "@changesets/cli": "^3.0.0",
+    "@changesets/cli": "^3.0.3",
     "@types/node": "^26.6.1",
     "@vitest/coverage-v8": "^5.0.0",
     "changeset-formatter": "^1.0.0",
