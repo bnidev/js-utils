@@ -1,5 +1,18 @@
 # @bnidev/js-utils
 
+## 1.1.0 (2026-10-25)
+
+### ✨ Features
+
+- Add `getQueryParam`, `updateQueryParam`, `parseQueryString` and `stringifyQueryString` query utilities (ebb3bcf)
+- Add `clamp`, `inRange`, `lerp` and `randomInt` range utilities (e1a9193)
+- Add `isPrimitive`, `isPlainObject`, `isFunction` and `isNil` runtime type-check utilities (1b5d157)
+- Add version-stamped drop-in paste snippets to every function page (9d056e4)
+
+### 🛠️ Fixes
+
+- Update brace-expansion to address a security vulnerability (bc98c98)
+
 ## 1.0.1 (2026-09-10)
 
 ### 🛠️ Fixes
