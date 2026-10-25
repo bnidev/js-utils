@@ -67,7 +67,7 @@
     "@biomejs/biome": "^2.5.15",
     "@changesets/cli": "^3.0.3",
     "@types/node": "^26.6.5",
-    "@vitest/coverage-v8": "^5.0.0",
+    "@vitest/coverage-v8": "^5.0.5",
     "changeset-formatter": "^1.0.0",
     "esbuild": "^0.28.2",
     "glob": "^13.0.0",
@@ -77,6 +77,6 @@
     "typedoc-github-theme": "^0.4.0",
     "typescript": "^7.0.2",
     "vite": "^8.3.4",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.5"
   }
 }
