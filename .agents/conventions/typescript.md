@@ -3,7 +3,6 @@
 ## Compiler settings
 
 Defined in `tsconfig.json`. Do not change without good reason.
-
 - `strict: true` — no `any`, no implicit `any`
 - `target: ES2022`, `module: commonjs`
 - `lib: ["es2023", "dom", "dom.iterable"]`

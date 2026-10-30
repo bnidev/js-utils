@@ -20,9 +20,13 @@
 ## Examples
 
 ```ts
-export function chunkArray<T>(arr: T[], size: number): T[][] { /* ... */ }
+export function chunkArray<T>(arr: T[], size: number): T[][] {
+  /* ... */
+}
 
-export function isEmail(email: string): boolean { /* ... */ }
+export function isEmail(email: string): boolean {
+  /* ... */
+}
 
 type DistanceUnit = 'meters' | 'kilometers' | 'miles' | 'yards'
 ```

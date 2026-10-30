@@ -42,7 +42,6 @@ block: the function's code with its internal dependencies already inlined, stamp
 the version it was copied from. Paste it into your project and it works standalone.
 
 Two tiers apply:
-
 - **Paste-first** (arrays, strings, math, timing, plain object helpers): copying is the
   intended lightweight use. Re-copy when you upgrade for bug fixes.
 - **Install-recommended** (sanitize, storage, URL/email validation, DOM):
@@ -53,17 +52,17 @@ Two tiers apply:
 ## 🛠 Usage
 
 ```ts
-import { debounceFn, flattenArray, deepClone } from "@bnidev/js-utils";
+import { debounceFn, flattenArray, deepClone } from '@bnidev/js-utils'
 
 // Debounce any function
-const log = (val: string) => console.log(val);
-const debouncedLog = debounceFn(log, 300);
+const log = (val: string) => console.log(val)
+const debouncedLog = debounceFn(log, 300)
 
 // Flatten nested arrays
-flattenArray([1, [2, 3], [[4]], 5]); // → [1, 2, 3, 4, 5]
+flattenArray([1, [2, 3], [[4]], 5]) // → [1, 2, 3, 4, 5]
 
 // Deep clone objects
-const copy = deepClone({ a: { b: 1 } });
+const copy = deepClone({ a: { b: 1 } })
 ```
 
 ## 📚 Documentation

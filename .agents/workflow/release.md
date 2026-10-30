@@ -24,8 +24,8 @@ A changeset file under `.changeset/`:
 
 ```md
 ---
-"@bnidev/js-utils": minor
----
+
+## "@bnidev/js-utils": minor
 
 add `merge` and `isEmpty` object utilities
 ```
