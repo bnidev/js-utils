@@ -24,12 +24,20 @@ export function chunkArray<T>(arr: T[], size: number): T[][] {
 Return `{ success, value, error }` instead of throwing. The caller inspects the result and handles failure gracefully.
 
 ```ts
-export function sanitizeUrl(input: string): { success: boolean; value: string | null; error?: Error } {
+export function sanitizeUrl(input: string): {
+  success: boolean
+  value: string | null
+  error?: Error
+} {
   try {
     const url = new URL(input)
     return { success: true, value: url.toString() }
   } catch (err) {
-    return { success: false, value: null, error: err instanceof Error ? err : new Error('Invalid URL') }
+    return {
+      success: false,
+      value: null,
+      error: err instanceof Error ? err : new Error('Invalid URL')
+    }
   }
 }
 ```

@@ -6,7 +6,6 @@ Domain language for `@bnidev/js-utils`: a collection of often-used utility funct
 ## Dual use
 
 The library serves two consumers:
-
 - **Install consumers** import from the package (tree-shakable ESM) and receive updates.
 - **Paste consumers** copy a single self-contained function into their project to avoid
   a dependency. Paste bundles are generated at docs-build time (internal dependencies

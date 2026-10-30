@@ -4,7 +4,7 @@ All exported functions and types must have JSDoc. This repo uses TypeDoc to auto
 
 ## Template
 
-```ts
+````ts
 /**
  * Converts a hex color string to an RGB object.
  *
@@ -23,8 +23,10 @@ All exported functions and types must have JSDoc. This repo uses TypeDoc to auto
  * hexToRgb('#ff0000') // { r: 255, g: 0, b: 0 }
  * ```
  */
-export function hexToRgb(hex: string): RGB | null { /* ... */ }
-```
+export function hexToRgb(hex: string): RGB | null {
+  /* ... */
+}
+````
 
 ## Required tags
 

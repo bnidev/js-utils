@@ -3,7 +3,6 @@
 ## Order
 
 Three groups, in this order, separated by blank lines. Biome enforces this via `organizeImports`.
-
 1. **Built-in** — `node:*` modules
 2. **External** — packages from `node_modules`
 3. **Internal** — code under `src/`, using relative paths

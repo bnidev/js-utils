@@ -16,24 +16,23 @@ The first line is the **header** and is the only required part.
 
 ## Types
 
-| Type       | When to use                                                |
-| ---------- | ---------------------------------------------------------- |
-| `feat`     | New feature                                                |
-| `fix`      | Bug fix                                                    |
-| `docs`     | Documentation only                                         |
-| `style`    | Formatting, whitespace (no code change)                    |
-| `refactor` | Code change that neither fixes a bug nor adds a feature    |
-| `perf`     | Performance improvement                                    |
-| `test`     | Adding or correcting tests                                 |
-| `build`    | Build system, external dependencies                        |
-| `ci`       | CI configuration files and scripts                         |
-| `chore`    | Tooling, dependencies, misc maintenance                    |
-| `revert`   | Reverts a previous commit                                  |
+| Type       | When to use                                             |
+| ---------- | ------------------------------------------------------- |
+| `feat`     | New feature                                             |
+| `fix`      | Bug fix                                                 |
+| `docs`     | Documentation only                                      |
+| `style`    | Formatting, whitespace (no code change)                 |
+| `refactor` | Code change that neither fixes a bug nor adds a feature |
+| `perf`     | Performance improvement                                 |
+| `test`     | Adding or correcting tests                              |
+| `build`    | Build system, external dependencies                     |
+| `ci`       | CI configuration files and scripts                      |
+| `chore`    | Tooling, dependencies, misc maintenance                 |
+| `revert`   | Reverts a previous commit                               |
 
 ## Scope
 
 **Free-form.** Use whatever conveys the area of the codebase affected. Common scopes:
-
 - `array`, `async`, `color`, `datetime`, `dom`, `math`, `object`, `sanitize`, `storage`, `string`, `timing`, `validation` — module names
 - `deps`, `deps-dev` — dependency changes
 - `ci` — `.github/workflows/`

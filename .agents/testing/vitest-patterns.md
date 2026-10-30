@@ -25,7 +25,9 @@ describe('chunkArray', () => {
   })
 
   it('throws when size is zero', () => {
-    expect(() => chunkArray([1, 2], 0)).toThrow('Chunk size must be greater than 0')
+    expect(() => chunkArray([1, 2], 0)).toThrow(
+      'Chunk size must be greater than 0'
+    )
   })
 })
 ```

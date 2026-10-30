@@ -15,7 +15,6 @@ All security vulnerabilities will be verified and addressed as soon as possible.
 ## Security-Related Utilities
 
 This library includes utilities for sanitizing user input:
-
 - `sanitizeHtml` - Sanitizes HTML to prevent XSS attacks
 - `sanitizeJson` - Safely parses JSON with error handling
 - `sanitizeUrl` - Validates URLs against an allowlist
@@ -25,5 +24,4 @@ When using these utilities, always review the options and ensure they meet your 
 ## Dependencies
 
 We keep dependencies up-to-date and monitor for vulnerabilities:
-
 - Dependabot alerts are enabled
