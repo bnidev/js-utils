@@ -42,6 +42,7 @@ block: the function's code with its internal dependencies already inlined, stamp
 the version it was copied from. Paste it into your project and it works standalone.
 
 Two tiers apply:
+
 - **Paste-first** (arrays, strings, math, timing, plain object helpers): copying is the
   intended lightweight use. Re-copy when you upgrade for bug fixes.
 - **Install-recommended** (sanitize, storage, URL/email validation, DOM):

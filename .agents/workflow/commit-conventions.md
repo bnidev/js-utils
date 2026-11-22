@@ -33,6 +33,7 @@ The first line is the **header** and is the only required part.
 ## Scope
 
 **Free-form.** Use whatever conveys the area of the codebase affected. Common scopes:
+
 - `array`, `async`, `color`, `datetime`, `dom`, `math`, `object`, `sanitize`, `storage`, `string`, `timing`, `validation` — module names
 - `deps`, `deps-dev` — dependency changes
 - `ci` — `.github/workflows/`

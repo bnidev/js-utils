@@ -61,6 +61,7 @@ export function isEmail(email: string): boolean {
 ```
 
 **Use when:**
+
 - Browser APIs are unavailable (SSR/Node) — return `null` or the default
 - The function is a validator (`isEmail`, `isUrl`) — return `false`
 - The element or value is not found — return `null` or an empty result
